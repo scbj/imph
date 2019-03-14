@@ -1,5 +1,10 @@
 {
   "name": "imph-vue",
+  "author": {
+    "name": "Sacha Bejaud",
+    "email": "sacha.bejaud@outlook.com",
+    "url": "https://scbj.io"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
