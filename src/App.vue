@@ -1,8 +1,27 @@
 <template>
   <div id="app">
-    <router-view />
+    <template v-if="ready">
+      <router-view />
+    </template>
+    <StartupView v-else />
   </div>
 </template>
+
+<script>
+import StartupView from '@/views/StartupView'
+
+export default {
+  components: {
+    StartupView
+  },
+
+  data () {
+    return {
+      ready: false
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 @import './assets/styles/_base.scss';
