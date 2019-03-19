@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import StartupView from '@/views/StartupView'
 
 export default {
@@ -17,8 +19,26 @@ export default {
 
   data () {
     return {
-      ready: false
+      timeout: false
     }
+  },
+
+  computed: {
+    hasCategories: get('hasCategories'),
+
+    ready () {
+      return this.timeout && this.hasCategories
+    }
+  },
+
+  async mounted () {
+    // Waiting at least 1 seconds before leave StartupView
+    setTimeout(() => {
+      this.timeout = true
+    }, 1500)
+
+    // Retreive the list of category
+    this.$store.dispatch('listCategories')
   }
 }
 </script>

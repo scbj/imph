@@ -11,12 +11,20 @@ const state = {
   videos: []
 }
 
+const getters = {
+  hasCategories (state) {
+    // Returns true when thearray 'categories' contain at least one element
+    return state.categories && state.categories.length > 0
+  }
+}
+
 const actions = {
   async listCategories ({ commit }) {
-    const { status, data } = await http.get('category')
+    const { status, data, ...response } = await http.get('category')
     if (status === 200 && data) {
       commit('SET_CATEGORIES', data)
     }
+    return { status, data, ...response }
   },
   async listVideos ({ commit }, { categoryId }) {
     const { status, data } = await http.get(`category/${categoryId}/video`)
@@ -32,6 +40,7 @@ const mutations = {
 
 export default new Vuex.Store({
   state,
+  getters,
   mutations,
   actions,
   plugins: [
