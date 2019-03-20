@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <template v-if="ready">
-      <router-view />
-    </template>
-    <StartupView v-else />
+    <transition name="fade" appear>
+      <template v-if="ready">
+        <router-view />
+      </template>
+      <StartupView v-else />
+    </transition>
   </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
   },
 
   async mounted () {
-    // Waiting at least 1 seconds before leave StartupView
+    // Waiting at least 1 seconds before allow leaving StartupView
     setTimeout(() => {
       this.timeout = true
     }, 1500)
@@ -66,5 +68,14 @@ $animation-duration: .6s;
 // Animations
 @keyframes darken-background {
   to { background: #000000 }
+}
+
+.fade-enter-active,
+.fade-leave-active  {
+  transition: opacity .3s cubic-bezier(.165, .84, .44, 1);
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
