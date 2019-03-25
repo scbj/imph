@@ -7,6 +7,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'StartupView'
+}
+</script>
+
 <style lang="scss" scoped>
 @import '../assets/styles/_vars.scss';
 @import '../assets/styles/_mixins.scss';
@@ -60,7 +66,7 @@
   opacity: 0;
   @include animate-scale-opacity(.4s);
 
-  > img {
+  > .base-logo {
     max-height: 92px;
     filter: drop-shadow(0 0 7px rgba(255,255,255,0));
     @include animate-blink();

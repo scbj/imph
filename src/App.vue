@@ -38,6 +38,8 @@ export default {
     setTimeout(() => {
       this.timeout = true
     }, 1500)
+    // TODO: New line pass it to true directly for development purpose (speed up workflow)
+    this.timeout = true
 
     // Retreive the list of category
     this.$store.dispatch('listCategories')
