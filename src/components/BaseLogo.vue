@@ -17,10 +17,10 @@ export default {
 
   computed: {
     source () {
-      switch (this.source) {
-        case 'original': return '@/assets/images/logo-500x610.png'
-        case 'small': return '@/assets/images/logo-60x49.png'
-        default: return '@/assets/images/logo-500x610.png'
+      switch (this.size) {
+        case 'original': return require('@/assets/images/logo-500x610.png')
+        case 'small': return require('@/assets/images/logo-60x49.png')
+        default: return require('@/assets/images/logo-500x610.png')
       }
     }
   }

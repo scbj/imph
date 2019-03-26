@@ -36,7 +36,6 @@ export default {
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: auto;
-  grid-gap: 1rem;
 
   @media screen and (min-width: $medium) {
   grid-template-rows: 30% auto 30%;
@@ -79,8 +78,7 @@ export default {
 .home-content {
   grid-row: 2 / 3;
   grid-column: 1 / 1;
-  justify-self: center;
-  align-self: center;
+  width: 100vw;
 
   @media screen and (min-width: $medium) {
     grid-row: 2 / 3;
