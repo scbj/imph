@@ -74,6 +74,9 @@ export default {
 <style lang="scss" scoped>
 .card-list {
   ul {
+    position: fixed;
+    bottom: 22px;
+    width: 100vw;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -95,8 +98,12 @@ export default {
 }
 
 .stepper {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
   margin: 32px auto 38px auto;
   text-align: center;
+  transform: translateX(-50%);
 }
 
 .step {

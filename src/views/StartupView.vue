@@ -50,9 +50,11 @@ export default {
   user-select: none;
 
   > span {
-    opacity: 0;
+
     font-size: 1.2rem;
-    position: absolute;
+    position: fixed;
+    bottom: 0;
+    opacity: 0;
     bottom: 2.2em;
     @include animate-scale-opacity(.5s);
 

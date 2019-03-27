@@ -38,8 +38,11 @@ export default {
     setTimeout(() => {
       this.timeout = true
     }, 1500)
-    // TODO: New line pass it to true directly for development purpose (speed up workflow)
-    this.timeout = true
+
+    if (process.env.NODE_ENV === 'development') {
+      // New line pass it to true directly for development purpose (speed up workflow)
+      this.timeout = true
+    }
 
     this.$store.dispatch('fetchCategories')
   }
