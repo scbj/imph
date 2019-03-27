@@ -14,7 +14,6 @@
     "clean": "rm -rf ./node_modules"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "contentful": "^7.5.0",
     "vue": "^2.6.6",
     "vue-mq": "^1.0.1",

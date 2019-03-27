@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPathify, { make } from 'vuex-pathify'
 
-import { getCategories } from '@/services/contentful'
-
 Vue.use(Vuex)
 
 const state = {
@@ -22,17 +20,15 @@ const getters = {
 }
 
 const actions = {
-  async fetchData ({ commit }) {
-    const categories = await getCategories()
-    if (categories) {
-      commit('SET_CATEGORIES', categories.map(category => {
-        // Delete the intermediate node created by Contentful
-        const { videos, ...fields } = category
-        return {
-          ...fields,
-          videos: videos && videos.map(video => video.fields)
-        }
-      }))
+  async fetchCategories ({ commit }) {
+    try {
+      const response = await fetch('.netlify/functions/category')
+      const data = await response.json()
+      if (data) {
+        commit('SET_CATEGORIES', data)
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 }

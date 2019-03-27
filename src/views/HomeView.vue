@@ -9,7 +9,6 @@
 <script>
 import BackgroundVideo from '@/components/BackgroundVideo.vue'
 import HomeContent from '@/components/HomeContent.vue'
-import { baseUrl } from '@/http'
 
 export default {
   name: 'HomeView',
@@ -21,8 +20,8 @@ export default {
 
   data () {
     return {
-      videoUrl: `${baseUrl}/video/2`,
-      posterUrl: `${baseUrl}/video/2`
+      videoUrl: '',
+      posterUrl: ''
     }
   }
 }
