@@ -1,19 +1,52 @@
 <template>
   <!-- Permet de gérer la différence de template entre les versions dekstop et mobile. -->
   <div class="home-content">
-    <h1>imph</h1>
-    <h2>Réalisateur numérique</h2>
-    <div class="empty" />
-    <CardList />
+    <!-- Mobile version -->
+    <template v-if="['extraSmall', 'small'].includes($mq)">
+      <h1>imph</h1>
+      <h2>Réalisateur numérique</h2>
+      <div class="empty" />
+      <CardList />
+    </template>
+
+    <!-- Desktop version -->
+    <template v-else>
+      <div class="category-buttons">
+        <CategoryButton
+          v-for="category in categories"
+          :key="category.label"
+          :link="'/' + category.path"
+          :label="category.label"
+          @over="changeBackgroundVideo(category)"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import { get, sync } from 'vuex-pathify'
+
 import CardList from '@/components/CardList.vue'
+import CategoryButton from '@/components/CategoryButton.vue'
 
 export default {
   components: {
-    CardList
+    CardList,
+    CategoryButton
+  },
+
+  computed: {
+    categories: get('categories'),
+    activeCategory: sync('home/activeCategory')
+  },
+
+  methods: {
+    changeBackgroundVideo (category) {
+      if (this.activeCategory !== category) {
+        this.activeCategory = category
+      }
+    }
   }
 }
 </script>
@@ -51,5 +84,11 @@ h2 {
 
 .card-list {
   justify-self: flex-end;
+}
+
+.category-buttons {
+  margin: auto 10%;
+  display: flex;
+  flex-direction: row;
 }
 </style>

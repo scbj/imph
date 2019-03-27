@@ -46,8 +46,8 @@ export default {
   grid-template-columns: auto;
 
   @media screen and (min-width: $medium) {
-  grid-template-rows: 30% auto 30%;
-  grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 30% auto 30%;
+    grid-template-columns: 100%;
   }
 
   > * {
@@ -91,6 +91,8 @@ export default {
   @media screen and (min-width: $medium) {
     grid-row: 2 / 3;
     grid-column:  1 / 3;
+    align-self: center;
+    justify-self: center;
   }
 }
 </style>

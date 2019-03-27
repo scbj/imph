@@ -7,6 +7,7 @@
         :title="category.label"
         :subtitle="category.videos.length + ' vidéos'"
         :background-source="category.thumbnailUrl"
+        @click.native="$router.push(category.path)"
       />
       <CardItem
         title="contacts"
@@ -61,6 +62,10 @@ export default {
   methods: {
     changeVisible (index) {
       console.log(index)
+    },
+
+    foo () {
+      console.log('🌈')
     }
   }
 }
