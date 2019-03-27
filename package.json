@@ -1,12 +1,12 @@
 {
   "name": "imph-vue",
+  "version": "0.1.0",
+  "private": true,
   "author": {
     "name": "Sacha Bejaud",
     "email": "sacha.bejaud@outlook.com",
     "url": "https://scbj.io"
   },
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -33,6 +33,7 @@
     "fibers": "^3.1.1",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
+    "vue-cli-plugin-netlify-lambda": "^0.1.1",
     "vue-template-compiler": "^2.5.21"
   }
 }
