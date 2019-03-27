@@ -2,34 +2,37 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPathify, { make } from 'vuex-pathify'
 
-import http from '@/http'
+import { getCategories } from '@/services/contentful'
 
 Vue.use(Vuex)
 
 const state = {
-  categories: [],
-  videos: []
+  categories: []
 }
 
 const getters = {
   hasCategories (state) {
-    // Returns true when thearray 'categories' contain at least one element
+    // Returns true when the array 'categories' contain at least one element
     return state.categories && state.categories.length > 0
+  },
+
+  activeCategory (state) {
+    return index => state.categories.length > index && state.categories[index]
   }
 }
 
 const actions = {
-  async listCategories ({ commit }) {
-    const { status, data, ...response } = await http.get('category')
-    if (status === 200 && data) {
-      commit('SET_CATEGORIES', data)
-    }
-    return { status, data, ...response }
-  },
-  async listVideos ({ commit }, { categoryId }) {
-    const { status, data } = await http.get(`category/${categoryId}/video`)
-    if (status === 200 && data) {
-      commit('SET_VIDEOS', data)
+  async fetchData ({ commit }) {
+    const categories = await getCategories()
+    if (categories) {
+      commit('SET_CATEGORIES', categories.map(category => {
+        // Delete the intermediate node created by Contentful
+        const { videos, ...fields } = category
+        return {
+          ...fields,
+          videos: videos && videos.map(video => video.fields)
+        }
+      }))
     }
   }
 }

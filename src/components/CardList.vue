@@ -8,12 +8,21 @@
         :subtitle="category.subtitle"
         :background-source="category.backgroundSource"
       />
+      <CardItem
+        title="contacts"
+        subtitle="y"
+        background-source=" "
+      >
+        Yo
+      </CardItem>
     </ul>
     <div class="stepper">
       <div
-        v-for="(category,index) in categories"
-        :key="index"
+        v-for="n in itemCount"
+        :key="n"
+        :class="{ active: n === itemVisibleIndex + 1 }"
         class="step"
+        @click="changeVisible(n)"
       />
     </div>
   </div>
@@ -26,8 +35,10 @@ export default {
   components: {
     CardItem
   },
+
   data () {
     return {
+      itemVisibleIndex: 0,
       categories: [
         {
           title: 'Aftermovies',
@@ -39,14 +50,20 @@ export default {
           title: 'clips musicaux',
           subtitle: '9 vidéos',
           backgroundSource: 'http://img.youtube.com/vi/jJNnYEBzk5Y/maxresdefault.jpg'
-        },
-        {
-
-          title: 'clips musicaux',
-          subtitle: '9 vidéos',
-          backgroundSource: 'http://img.youtube.com/vi/jJNnYEBzk5Y/maxresdefault.jpg'
         }
       ]
+    }
+  },
+
+  computed: {
+    itemCount () {
+      return this.categories.length + 1
+    }
+  },
+
+  methods: {
+    changeVisible (index) {
+      console.log(index)
     }
   }
 }
@@ -54,18 +71,19 @@ export default {
 
 <style lang="scss" scoped>
 .card-list {
-  list-style: none;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  // width: 100%;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-      display: none;
+  ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        display: none;
+    }
   }
 }
 
 .card-item {
+  flex: 0 0 auto;
   margin-right: 18px;
   margin-right: 1.19rem;
 
@@ -76,6 +94,7 @@ export default {
 
 .stepper {
   margin: 32px auto 38px auto;
+  text-align: center;
 }
 
 .step {
@@ -85,8 +104,9 @@ export default {
   display: inline-block;
   width: 16px;
   height: 2px;
+  transition: width .2s ease-in-out;
 
-  &:first-of-type {
+  &.active {
     background: #ffffff;
     width: 22px;
   }

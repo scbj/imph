@@ -41,8 +41,7 @@ export default {
     // TODO: New line pass it to true directly for development purpose (speed up workflow)
     this.timeout = true
 
-    // Retreive the list of category
-    this.$store.dispatch('listCategories')
+    this.$store.dispatch('fetchData')
   }
 }
 </script>

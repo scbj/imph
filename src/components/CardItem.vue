@@ -1,7 +1,10 @@
 <template>
   <li class="card-item" :style="backgroundImage">
-    <span class="title">{{ title }}</span>
-    <span class="subtitle">{{ subtitle }}</span>
+    <slot>
+      <!-- Default content -->
+      <span class="title">{{ title }}</span>
+      <span class="subtitle">{{ subtitle }}</span>
+    </slot>
   </li>
 </template>
 
@@ -10,11 +13,11 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      default: ''
     },
     subtitle: {
       type: String,
-      required: true
+      default: ''
     },
     backgroundSource: {
       type: String,

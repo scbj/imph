@@ -10,10 +10,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "clean": "rm -rf ./node_modules"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "contentful": "^7.5.0",
     "vue": "^2.6.6",
     "vue-mq": "^1.0.1",
     "vue-router": "^3.0.1",
