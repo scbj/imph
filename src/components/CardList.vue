@@ -8,6 +8,7 @@
         :subtitle="category.videos.length + ' vidéos'"
         :background-source="category.thumbnailUrl"
         @click.native="$router.push(category.path)"
+        @touchstart.native="changeBackgroundVideo(category)"
       />
       <CardItem
         title="contacts"
@@ -64,8 +65,10 @@ export default {
       console.log(index)
     },
 
-    foo () {
-      console.log('🌈')
+    changeBackgroundVideo (category) {
+      if (this.activeCategory !== category) {
+        this.activeCategory = category
+      }
     }
   }
 }
