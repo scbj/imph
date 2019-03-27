@@ -4,9 +4,9 @@
       <CardItem
         v-for="(category, index) in categories"
         :key="index"
-        :title="category.title"
-        :subtitle="category.subtitle"
-        :background-source="category.backgroundSource"
+        :title="category.label"
+        :subtitle="category.videos.length + ' vidéos'"
+        :background-source="category.thumbnailUrl"
       />
       <CardItem
         title="contacts"
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { get, sync } from 'vuex-pathify'
+
 import CardItem from '@/components/CardItem.vue'
 
 export default {
@@ -38,27 +40,22 @@ export default {
 
   data () {
     return {
-      itemVisibleIndex: 0,
-      categories: [
-        {
-          title: 'Aftermovies',
-          subtitle: '12 vidéos',
-          backgroundSource: 'http://img.youtube.com/vi/VCufnewSegs/maxresdefault.jpg'
-        },
-        {
-
-          title: 'clips musicaux',
-          subtitle: '9 vidéos',
-          backgroundSource: 'http://img.youtube.com/vi/jJNnYEBzk5Y/maxresdefault.jpg'
-        }
-      ]
+      itemVisibleIndex: 0
     }
   },
 
   computed: {
+    categories: get('categories'),
+
+    activeCategory: sync('home/activeCategory'),
+
     itemCount () {
       return this.categories.length + 1
     }
+  },
+
+  mounted () {
+    this.activeCategory = this.categories[0]
   },
 
   methods: {

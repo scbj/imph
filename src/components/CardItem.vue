@@ -2,14 +2,18 @@
   <li class="card-item" :style="backgroundImage">
     <slot>
       <!-- Default content -->
-      <span class="title">{{ title }}</span>
+      <span class="title">{{ title | lowerCase }}</span>
       <span class="subtitle">{{ subtitle }}</span>
     </slot>
   </li>
 </template>
 
 <script>
+import { lowerCase } from '@/filters/string'
+
 export default {
+  filters: { lowerCase },
+
   props: {
     title: {
       type: String,
@@ -46,9 +50,11 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   padding: 14px;
+  margin: 60px 0;
   width: 200px;
   height: 320px;
-  box-shadow: 0 10px 20px rgba(#000000, 66%);
+  // box-shadow: 0 10px 20px rgba(#000000, 66%);
+  filter: drop-shadow(0 10px 20px rgba(#000000, 66%));
 }
 
 .title {

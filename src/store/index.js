@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPathify, { make } from 'vuex-pathify'
 
+import * as modules from '@/store/modules'
+
 Vue.use(Vuex)
 
 const state = {
@@ -42,6 +44,7 @@ export default new Vuex.Store({
   getters,
   mutations,
   actions,
+  modules,
   plugins: [
     VuexPathify.plugin
   ]

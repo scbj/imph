@@ -29,9 +29,10 @@ export async function handler (event, context, callback) {
       },
       body: JSON.stringify(categories.map(category => {
         // Delete the intermediate node created by Contentful
-        const { videos, ...fields } = category
+        const { videos, backgroundVideo, ...fields } = category
         return {
           ...fields,
+          backgroundVideoUrl: backgroundVideo && backgroundVideo.fields.file.url,
           videos: videos && videos.map(video => video.fields)
         }
       }))

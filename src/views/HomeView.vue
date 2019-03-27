@@ -1,12 +1,14 @@
 <template>
   <div class="home-view">
-    <BackgroundVideo :source="videoUrl" :poster="posterUrl" />
+    <BackgroundVideo :source="backgroundUrl" :poster="posterUrl" />
     <BaseLogo size="small" />
     <HomeContent />
   </div>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import BackgroundVideo from '@/components/BackgroundVideo.vue'
 import HomeContent from '@/components/HomeContent.vue'
 
@@ -20,8 +22,15 @@ export default {
 
   data () {
     return {
-      videoUrl: '',
       posterUrl: ''
+    }
+  },
+
+  computed: {
+    activeCategory: get('home/activeCategory'),
+
+    backgroundUrl () {
+      return this.activeCategory && this.activeCategory.backgroundVideoUrl
     }
   }
 }
