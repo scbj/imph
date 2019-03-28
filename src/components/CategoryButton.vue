@@ -123,11 +123,15 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     font-size: 14px;
     color: white;
     position: absolute;
-    bottom: 33%;
+    bottom: 25%;
     left: 50%;
     text-shadow: 0 0px 70px rgba(#000000, 50%);
     transform: translateX(-50%) translateY(100px);
     transition: all .3s $easing;
+
+    @media screen and (min-width: $extraLarge) {
+      bottom: 30%;
+    }
   }
 }
 </style>

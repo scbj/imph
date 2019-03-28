@@ -4,7 +4,8 @@
     <content>
       <BaseLogo size="small" />
       <HomeContent />
-      <SocialLinks />
+      <!-- Mobile version -->
+      <SocialLinks v-if="['medium', 'large', 'extraLarge'].includes($mq)" />
     </content>
   </div>
 </template>
@@ -102,11 +103,24 @@ export default {
   text-align: center;
 }
 
-.base-logo,
-.social-links {
+.base-logo {
   margin: 32px;
   @media screen and (min-width: $medium) {
     margin: 44px;
+  }
+}
+
+.social-links {
+  position: relative;
+  opacity: .3;
+  margin: 67px;
+  transition: opacity .2s ease-out;
+  @media screen and (min-width: $extraLarge) {
+    margin: 92px;
+  }
+
+  &:hover {
+    opacity: 1;
   }
 }
 </style>
