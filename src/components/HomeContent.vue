@@ -17,6 +17,7 @@
           :key="category.label"
           :link="'/' + category.path"
           :label="category.label"
+          :background-source="category.thumbnailUrl"
           @over="changeBackgroundVideo(category)"
         />
       </div>
@@ -52,6 +53,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/_vars.scss';
+
 .home-content {
   display: flex;
   flex-direction: column;
@@ -87,8 +90,23 @@ h2 {
 }
 
 .category-buttons {
-  margin: auto 10%;
+  margin: auto 5%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  @media screen and (min-width: $extraLarge){
+    flex-direction: row;
+    margin: auto 5%;
+  }
+
+  > * {
+    z-index: 1;
+
+    &:hover {
+      z-index: 20;
+    }
+  }
 }
 </style>

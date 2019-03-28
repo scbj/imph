@@ -9,10 +9,13 @@
 </template>
 
 <script>
+import backgroundImage from '@/mixins/backgroundImage'
 import { lowerCase } from '@/filters/string'
 
 export default {
   filters: { lowerCase },
+
+  mixins: [ backgroundImage ],
 
   props: {
     title: {
@@ -22,18 +25,6 @@ export default {
     subtitle: {
       type: String,
       default: ''
-    },
-    backgroundSource: {
-      type: String,
-      default: ''
-    }
-  },
-
-  computed: {
-    backgroundImage () {
-      return {
-        backgroundImage: `url(${this.backgroundSource})`
-      }
     }
   }
 }
@@ -41,16 +32,15 @@ export default {
 
 <style lang="scss" scoped>
 .card-item {
-  background-image: url('');
   background-repeat: no-repeat;
   background-position: -45px;
   background-size: auto 100%;
   border-radius: 8px;
+  padding: 14px;
+  margin: 60px 0;
   display: inline-flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 14px;
-  margin: 60px 0;
   width: 200px;
   height: 320px;
   // box-shadow: 0 10px 20px rgba(#000000, 66%);

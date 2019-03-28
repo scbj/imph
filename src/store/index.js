@@ -27,7 +27,7 @@ const actions = {
       const response = await fetch('.netlify/functions/category')
       const data = await response.json()
       if (data) {
-        commit('SET_CATEGORIES', data)
+        commit('SET_CATEGORIES', data.sort((a, b) => a.order - b.order))
       }
     } catch (error) {
       console.log(error)

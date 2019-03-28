@@ -46,7 +46,7 @@ export default {
   grid-template-columns: auto;
 
   @media screen and (min-width: $medium) {
-    grid-template-rows: 30% auto 30%;
+    grid-template-rows: auto auto 30%;
     grid-template-columns: 100%;
   }
 
