@@ -1,8 +1,11 @@
 <template>
   <div class="home-view">
     <BackgroundVideo :source="backgroundUrl" :poster="posterUrl" />
-    <BaseLogo size="small" />
-    <HomeContent />
+    <content>
+      <BaseLogo size="small" />
+      <HomeContent />
+      <SocialLinks />
+    </content>
   </div>
 </template>
 
@@ -11,13 +14,15 @@ import { get } from 'vuex-pathify'
 
 import BackgroundVideo from '@/components/BackgroundVideo.vue'
 import HomeContent from '@/components/HomeContent.vue'
+import SocialLinks from '@/components/SocialLinks.vue'
 
 export default {
   name: 'HomeView',
 
   components: {
     BackgroundVideo,
-    HomeContent
+    HomeContent,
+    SocialLinks
   },
 
   data () {
@@ -42,22 +47,24 @@ export default {
 .home-view {
   height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto;
+  grid-template-rows: 100%;
+  grid-template-columns: 100%;
+  position: relative;
 
-  @media screen and (min-width: $medium) {
-    grid-template-rows: auto auto 30%;
-    grid-template-columns: 100%;
-  }
-
-  > * {
-    z-index: 2;
+  > content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
   }
 }
 
 .background-video {
-  grid-row: 1 / -1;
-  grid-column: 1 / -1;
+  position: fixed;
+  top: 0;
+  left: 0;
   object-fit: cover;
   filter: brightness(36%);
   width: 100%;
@@ -65,16 +72,14 @@ export default {
   z-index: 1;
 
   @media screen and (min-width: $medium) {
-    grid-row: 1 / 4;
-    grid-column: 1 / 3;
     filter: none;
   }
 }
 
 .base-logo {
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
   margin: 32px;
+  align-self: flex-start;
+  justify-self: flex-start;
   max-height: 50px;
 
   @media screen and (min-width: $medium) {
@@ -84,15 +89,24 @@ export default {
 }
 
 .home-content {
-  grid-row: 2 / 3;
-  grid-column: 1 / 1;
-  width: 100vw;
+  flex-grow: 1;
 
   @media screen and (min-width: $medium) {
-    grid-row: 2 / 3;
-    grid-column:  1 / 3;
-    align-self: center;
-    justify-self: center;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+}
+
+.social-links {
+  justify-self: center;
+  text-align: center;
+}
+
+.base-logo,
+.social-links {
+  margin: 32px;
+  @media screen and (min-width: $medium) {
+    margin: 44px;
   }
 }
 </style>

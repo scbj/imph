@@ -60,7 +60,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   background-position: 40% 40%;
   background-size: 300%;
   margin: 2rem;
-  padding: 4rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,6 +110,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   a {
     font-family: 'Teko';
     font-size: 42px;
+    letter-spacing: .1em;
     color: white;
     text-decoration: none;
     text-shadow: 0 0px 70px rgba(#000000, 50%);
