@@ -19,6 +19,7 @@
           :label="category.label"
           :background-source="category.thumbnailUrl"
           @over="changeBackgroundVideo(category)"
+          @click.native="$router.push(category.path)"
         />
       </div>
     </template>
