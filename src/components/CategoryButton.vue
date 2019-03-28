@@ -5,9 +5,9 @@
     @mouseover="$emit('over')"
   >
     <router-link class="yo" :to="link">
-      {{ label | lowerCase }}
+      {{ title | lowerCase }}
     </router-link>
-    <span>12 vidéos</span>
+    <span>{{ subtitle }}</span>
   </button>
 </template>
 
@@ -27,7 +27,11 @@ export default {
       type: String,
       default: ''
     },
-    label: {
+    title: {
+      type: String,
+      default: ''
+    },
+    subtitle: {
       type: String,
       default: ''
     }
