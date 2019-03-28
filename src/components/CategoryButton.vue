@@ -60,6 +60,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   background-position: 40% 40%;
   background-size: 300%;
   margin: 2rem;
+  padding: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +71,6 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     background .2s $easing,
     opacity .3s $easing,
     transform .3s $easing;
-  animation: foo .2s ease-in-out for;
 
   &::after {
     @extend %pseudo-element;
