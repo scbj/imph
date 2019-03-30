@@ -56,6 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/_vars.scss';
+@import '../assets/styles/_fonts.scss';
 
 .home-content {
   display: flex;
@@ -70,7 +71,7 @@ export default {
 
 h1 {
   @extend %text;
-  font-family: Teko;
+  @extend %primary-font;
   font-weight: 300;
   font-size: 3rem;
   letter-spacing: .03em;
@@ -78,7 +79,7 @@ h1 {
 
 h2 {
   @extend %text;
-  font-family: 'Roboto Mono';
+  @extend %secondary-font;
   font-size: 16px;
   font-weight: 400;
 }

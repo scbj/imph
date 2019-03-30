@@ -31,6 +31,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/_fonts.scss';
+
 .card-item {
   background-repeat: no-repeat;
   background-position: -45px;
@@ -48,14 +50,13 @@ export default {
 }
 
 .title {
-  font-family: Teko;
   font-size: 1.88rem;
   line-height: 1.9rem;
   letter-spacing: .1em;
 }
 
 .subtitle {
-  font-family: 'Roboto Mono';
+  @extend %secondary-font;
   font-size: 13px;
 }
 </style>

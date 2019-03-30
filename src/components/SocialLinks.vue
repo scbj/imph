@@ -62,7 +62,6 @@ img {
 }
 
 a {
-    font-family: 'Teko';
     font-size: 1.6rem;
     letter-spacing: .05em;
     position: relative;

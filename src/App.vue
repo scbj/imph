@@ -56,7 +56,6 @@ $animation-easing: cubic-bezier(.165, .84, .44, 1);
 $animation-duration: .6s;
 
 #app {
-  font-family: 'Roboto Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;

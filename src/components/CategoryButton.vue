@@ -42,6 +42,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/_vars.scss';
 @import '../assets/styles/_abstracts.scss';
+@import '../assets/styles/_fonts.scss';
 
 $easing: cubic-bezier(.215, .61, .355, 1);
 
@@ -65,31 +66,21 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 350px;
+  width: 400px;
   height: 200px;
+  box-shadow: 0px 5px 15px -5px #000000;
   transition:
     background .2s $easing,
     opacity .3s $easing,
-    transform .3s $easing;
-
-  &::after {
-    @extend %pseudo-element;
-    opacity: 0;
-    background: transparent;
-    border-radius: 7px;
-    box-shadow: 0px 15px 45px rgba(#000000, 40%);
-    transition: opacity 0.3s ease-in-out;
-  }
+    transform .3s $easing,
+    box-shadow .3s $easing;
 
   &:hover {
     opacity: 1;
     background-size: 320%;
     background-position: 40% 45%;
     transform: translateY(-18px) scale(1.05);
-
-    &::after {
-      opacity: 1;
-    }
+    box-shadow: 0px 15px 45px -10px rgba(#000000, 60%);
 
     a {
       transform: scale(1.05);
@@ -99,22 +90,6 @@ $easing: cubic-bezier(.215, .61, .355, 1);
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-  }
-
-  @media screen and (min-width: $medium) {
-    width: 400px;
-    height: 200px;
-
-    span { bottom: 30%; }
-    a { font-size: 2.2rem; }
-  }
-
-  @media screen and (min-width: $large) {
-    width: 400px;
-    height: 200px;
-
-    span { bottom: 30%; }
-    a { font-size: 2.2rem; }
   }
 
   @media screen and (min-width: $extraLarge) {
@@ -134,8 +109,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   }
 
   a {
-    font-family: 'Teko';
-    // font-size: 36px;
+    font-size: 2.2rem;
     letter-spacing: .1em;
     color: white;
     text-decoration: none;
@@ -144,8 +118,8 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   }
 
   span {
+    @extend %secondary-font;
     opacity: 0;
-    font-family: 'Roboto Mono';
     font-size: 14px;
     color: white;
     position: absolute;
