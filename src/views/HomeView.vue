@@ -45,6 +45,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/_vars.scss';
 
+$easing: cubic-bezier(.215, .61, .355, 1);
+
 .home-view {
   height: 100vh;
   display: grid;
@@ -114,13 +116,16 @@ export default {
   position: relative;
   opacity: .3;
   margin: 67px;
-  transition: opacity .2s ease-out;
+  transform: translateY(.4em);
+  transition: all .2s $easing .5s;
   @media screen and (min-width: $extraLarge) {
     margin: 92px;
   }
 
   &:hover {
     opacity: 1;
+    transform: translateY(0);
+    transition: all .2s $easing;
   }
 }
 </style>

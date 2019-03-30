@@ -51,7 +51,7 @@ export default {
   font-family: Teko;
   font-size: 1.88rem;
   line-height: 1.9rem;
-  letter-spacing: .02em;
+  letter-spacing: .1em;
 }
 
 .subtitle {

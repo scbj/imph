@@ -7,9 +7,13 @@
         width="28"
         height="28"
       >
-      <span :key="link.name">
+      <a
+        :key="link.name"
+        :href="link.url"
+        :target="link.openTab === false ? null : '_blank'"
+      >
         {{ link.label }}
-      </span>
+      </a>
     </template>
   </div>
 </template>
@@ -17,19 +21,24 @@
 <script>
 export default {
   data () {
+    const mail = 'johanboisson@hotmail.fr'
     return {
       links: [
         {
           iconName: 'facebook',
-          label: '/imphfilm'
+          label: '/imphfilm',
+          url: 'https://www.facebook.com/imphfilm/'
         },
         {
           iconName: 'instagram',
-          label: '@imphfilm'
+          label: '@imphfilm',
+          url: 'https://www.instagram.com/imphfilm/'
         },
         {
           iconName: 'mail',
-          label: 'johanboisson@hotmail.fr'
+          label: mail,
+          url: `mailto:${mail}`,
+          openTab: false
         }
       ]
     }
@@ -38,6 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.social-links {
+  user-select: none;
+}
 
 img {
   margin-left: 3.4em;
@@ -49,26 +61,11 @@ img {
   }
 }
 
-span {
+a {
     font-family: 'Teko';
     font-size: 1.6rem;
     letter-spacing: .05em;
     position: relative;
-
-    &::after {
-      content: '';
-      background: white;
-      width: 40%;
-      height: 2px;
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%) scale(0);
-      transition: transform .2s ease-out;
-    }
-
-    &:hover::after {
-      transform: translateX(-50%) scale(1);
-    }
+    cursor: pointer;
 }
 </style>

@@ -101,15 +101,41 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     }
   }
 
+  @media screen and (min-width: $medium) {
+    width: 400px;
+    height: 200px;
+
+    span { bottom: 30%; }
+    a { font-size: 2.2rem; }
+  }
+
+  @media screen and (min-width: $large) {
+    width: 400px;
+    height: 200px;
+
+    span { bottom: 30%; }
+    a { font-size: 2.2rem; }
+  }
+
   @media screen and (min-width: $extraLarge) {
-    margin: 1rem;
+    width: 400px;
+    height: 200px;
+
+    span { bottom: 30%; }
+    a { font-size: 2.2rem; }
+  }
+
+  @media screen and (min-width: $thatsbig) {
     width: 400px;
     height: 250px;
+
+    span { bottom: 30%; }
+    a { font-size: 2.6rem; }
   }
 
   a {
     font-family: 'Teko';
-    font-size: 42px;
+    // font-size: 36px;
     letter-spacing: .1em;
     color: white;
     text-decoration: none;
@@ -128,10 +154,6 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     text-shadow: 0 0px 70px rgba(#000000, 50%);
     transform: translateX(-50%) translateY(100px);
     transition: all .3s $easing;
-
-    @media screen and (min-width: $extraLarge) {
-      bottom: 30%;
-    }
   }
 }
 </style>
