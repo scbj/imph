@@ -17,9 +17,10 @@ export default {
 
 <style lang="scss" scoped>
 .test-font-view {
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100%;
 
   @media screen and (min-width: 55rem) {
     flex-direction: row;
