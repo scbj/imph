@@ -44,24 +44,14 @@ export default {
 @import '../assets/styles/_abstracts.scss';
 @import '../assets/styles/_fonts.scss';
 
-$easing: cubic-bezier(.215, .61, .355, 1);
-
-// Reset Button Default Style
 .category-button {
-  cursor: pointer;
-  outline: none;
-  border: solid 1px rgba(white, 8%);
-  border-radius: 7px;
-  position: relative;
-}
-
-.category-button {
-  opacity: .3;
   background-repeat: no-repeat;
   background-position: 40% 40%;
   background-size: 300%;
+  border-radius: 7px;
   margin: 2rem;
   padding: 1rem;
+  opacity: .3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,35 +59,12 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   width: 400px;
   height: 200px;
   box-shadow: 0px 5px 15px -5px #000000;
-  transition:
-    background .2s $easing,
-    opacity .3s $easing,
-    transform .3s $easing,
-    box-shadow .3s $easing;
-
-  &:hover {
-    opacity: 1;
-    background-size: 320%;
-    background-position: 40% 45%;
-    transform: translateY(-18px) scale(1.05);
-    box-shadow: 0px 15px 45px -10px rgba(#000000, 60%);
-
-    a {
-      transform: scale(1.05);
-    }
-
-    span {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  }
 
   @media screen and (min-width: $extraLarge) {
     width: 400px;
     height: 200px;
 
     span { bottom: 30%; }
-    a { font-size: 2.2rem; }
   }
 
   @media screen and (min-width: $thatsbig) {
@@ -105,29 +72,52 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     height: 250px;
 
     span { bottom: 30%; }
-    a { font-size: 2.6rem; }
   }
 
   a {
-    font-size: 2.2rem;
-    letter-spacing: .1em;
+    @extend %heading-3;
     color: white;
     text-decoration: none;
     text-shadow: 0 0px 70px rgba(#000000, 50%);
-    transition: all .6s $easing .1s;
   }
 
   span {
-    // @extend %secondary-font;
-    opacity: 0;
-    font-size: 14px;
     color: white;
+    opacity: 0;
     position: absolute;
     bottom: 25%;
     left: 50%;
-    text-shadow: 0 0px 70px rgba(#000000, 50%);
     transform: translateX(-50%) translateY(100px);
-    transition: all .3s $easing;
+    text-shadow: 0 0px 70px rgba(#000000, 50%);
   }
+}
+
+// Animations
+$easing: cubic-bezier(.215, .61, .355, 1);
+
+.category-button {
+  transition:
+    background .2s $easing,
+    opacity .3s $easing,
+    transform .3s $easing,
+    box-shadow .3s $easing;
+
+    a { transition: all .6s $easing .1s; }
+    span { transition: all .3s $easing; }
+
+    &:hover {
+      background-size: 320%;
+      background-position: 40% 45%;
+      opacity: 1;
+      transform: translateY(-18px) scale(1.05);
+      box-shadow: 0px 15px 45px -10px rgba(#000000, 60%);
+
+      a { transform: scale(1.05); }
+
+      span {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
 }
 </style>

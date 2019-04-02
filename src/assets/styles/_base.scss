@@ -24,12 +24,36 @@ html {
   @include fluid-type($min-width, $max-width, $min-font, $max-font);
 }
 
-body,
+h1 {
+  @extend %heading-1;
+}
+
+h2 {
+  @extend %heading-2;
+}
+
+h3 {
+  @extend %heading-3;
+}
+
 a,
 input,
 textarea,
 code,
 tt,
-pre {
-  // @extend %primary-font;
+pre,
+span,
+p,
+button {
+  @extend %heading-4;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
 }

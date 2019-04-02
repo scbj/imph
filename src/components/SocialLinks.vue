@@ -60,11 +60,4 @@ img {
     margin-left: 0;
   }
 }
-
-a {
-    font-size: 1.6rem;
-    letter-spacing: .05em;
-    position: relative;
-    cursor: pointer;
-}
 </style>
