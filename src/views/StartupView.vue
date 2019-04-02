@@ -3,7 +3,9 @@
     <div class="logo">
       <BaseLogo />
     </div>
-    <span>imphfilm</span>
+    <span class="text">
+      imphfilm
+    </span>
   </div>
 </template>
 
@@ -49,18 +51,12 @@ export default {
 
   user-select: none;
 
-  > span {
-
-    font-size: 1.2rem;
+  > .text {
     position: fixed;
     bottom: 0;
     opacity: 0;
-    bottom: 2.2em;
+    bottom: 3em;
     @include animate-scale-opacity(.5s);
-
-    @media screen and (min-width: $medium) {
-      bottom: 4em;
-    }
   }
 }
 
@@ -69,13 +65,9 @@ export default {
   @include animate-scale-opacity(.4s);
 
   > .base-logo {
-    max-height: 92px;
+    max-height: 6rem;
     filter: drop-shadow(0 0 7px rgba(255,255,255,0));
     @include animate-blink();
-
-    @media screen and (min-width: $medium) {
-      max-height: 174px;
-    }
   }
 }
 

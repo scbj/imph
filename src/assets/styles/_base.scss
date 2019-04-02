@@ -18,7 +18,7 @@ html, body {
 
 html {
   $min-width: 320px;
-  $max-width: 1400px;
+  $max-width: 1880px;
   $min-font: 12px;
   $max-font: 19px;
   @include fluid-type($min-width, $max-width, $min-font, $max-font);
