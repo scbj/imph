@@ -4,10 +4,12 @@
     class="category-button"
     @mouseover="$emit('over')"
   >
-    <router-link class="yo" :to="link">
-      {{ title | lowerCase }}
-    </router-link>
-    <span>{{ subtitle }}</span>
+    <div class="content">
+      <router-link class="yo" :to="link">
+        {{ title | lowerCase }}
+      </router-link>
+      <span>{{ subtitle }}</span>
+    </div>
   </button>
 </template>
 
@@ -52,42 +54,47 @@ export default {
   margin: 2rem;
   padding: 1rem;
   opacity: .3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   width: 400px;
   height: 200px;
+  position: relative;
   box-shadow: 0px 5px 15px -5px #000000;
 
   @media screen and (min-width: $extraLarge) {
     width: 400px;
     height: 200px;
-
-    span { bottom: 30%; }
   }
 
   @media screen and (min-width: $thatsbig) {
     width: 400px;
     height: 250px;
-
-    span { bottom: 30%; }
   }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
 
   a {
     @extend %heading-3;
     color: white;
     text-decoration: none;
+    margin: 0;
+    grid-row: 2/3;
+    grid-column: 1/2;
     text-shadow: 0 0px 70px rgba(#000000, 50%);
   }
 
   span {
     color: white;
     opacity: 0;
-    position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
+    grid-row: 3/4;
+    grid-column: 1/2;
+    transform: translateY(100px);
     text-shadow: 0 0px 70px rgba(#000000, 50%);
   }
 }
@@ -116,7 +123,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
 
       span {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
       }
     }
 }
