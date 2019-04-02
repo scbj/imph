@@ -1,20 +1,15 @@
 <template>
   <div class="social-links">
-    <template v-for="link in links">
-      <img
-        :key="link.name"
-        :src="require(`@/assets/images/icon-${link.iconName}.svg`)"
-        width="28"
-        height="28"
-      >
-      <a
-        :key="link.name"
-        :href="link.url"
-        :target="link.openTab === false ? null : '_blank'"
-      >
+    <div
+      v-for="link in links"
+      :key="link.label"
+      class="link"
+    >
+      <img :src="require(`@/assets/images/icon-${link.iconName}.svg`)">
+      <a :href="link.url" :target="link.openTab === false ? null : '_blank'">
         {{ link.label }}
       </a>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -49,15 +44,25 @@ export default {
 <style lang="scss" scoped>
 .social-links {
   user-select: none;
+  display: flex;
+  justify-content: space-around;
 }
 
-img {
+.link {
   margin-left: 3.4em;
-  margin-right: .5em;
-  transform: translateY(20%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   &:first-of-type {
     margin-left: 0;
+  }
+
+  img {
+    $size: 1.5rem;
+    margin-right: .5em;
+    width: $size;
+    height: $size;
   }
 }
 </style>

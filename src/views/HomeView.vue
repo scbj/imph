@@ -4,8 +4,7 @@
     <content>
       <BaseLogo size="small" />
       <HomeContent />
-      <!-- Mobile version -->
-      <SocialLinks v-if="['medium', 'large', 'extraLarge'].includes($mq)" />
+      <SocialLinks />
     </content>
   </div>
 </template>
@@ -115,7 +114,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
 .social-links {
   position: relative;
   opacity: .3;
-  margin: 67px;
+  margin-bottom: 67px;
   transform: translateY(.4em);
   transition: all .2s $easing .5s;
   @media screen and (min-width: $extraLarge) {
