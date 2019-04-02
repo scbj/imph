@@ -1,10 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700|Teko:300:400');
+// Import fonts from Google Font
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
 
-%primary-font {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-family: 'Teko';
+h1,
+h2,
+h3 {
+  font-family: 'Poppins', sans-serif;
 }
 
-%secondary-font {
-  font-family: 'Roboto Mono', monospace;
+h2,
+h3,
+p {
+  margin-top: 1em;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  text-justify: distribute;
+  line-height: 1.7em;
+  margin-bottom: 1em;
 }

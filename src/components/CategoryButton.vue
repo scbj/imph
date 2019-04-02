@@ -118,7 +118,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   }
 
   span {
-    @extend %secondary-font;
+    // @extend %secondary-font;
     opacity: 0;
     font-size: 14px;
     color: white;

@@ -1,7 +1,7 @@
 <template>
   <div class="test-font-view">
-    <TestFontCanvas color="white" background="black" />
-    <TestFontCanvas color="black" background="white" />
+    <TestFontCanvas class="theme-light" />
+    <TestFontCanvas />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   overflow: auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 
   @media screen and (min-width: 55rem) {
     flex-direction: row;

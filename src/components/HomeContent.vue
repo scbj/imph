@@ -71,7 +71,7 @@ export default {
 
 h1 {
   @extend %text;
-  @extend %primary-font;
+  // @extend %primary-font;
   font-weight: 300;
   font-size: 3rem;
   letter-spacing: .03em;
@@ -79,7 +79,7 @@ h1 {
 
 h2 {
   @extend %text;
-  @extend %secondary-font;
+  // @extend %secondary-font;
   font-size: 16px;
   font-weight: 400;
 }

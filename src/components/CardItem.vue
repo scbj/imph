@@ -56,7 +56,7 @@ export default {
 }
 
 .subtitle {
-  @extend %secondary-font;
+  // @extend %secondary-font;
   font-size: 13px;
 }
 </style>

@@ -59,7 +59,7 @@ $animation-duration: .6s;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
-  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 
   animation:
@@ -67,6 +67,21 @@ $animation-duration: .6s;
     $animation-duration
     $animation-easing
     forwards;
+}
+
+::selection {
+  background: rgba(white, 0.996);
+  color: black;
+}
+
+.theme-light {
+  background:#ffffff;
+  color: black;
+
+  ::selection {
+    background: rgba(black, 0.996);
+    color: white;
+  }
 }
 
 // Animations
