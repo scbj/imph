@@ -86,10 +86,11 @@ export default {
     margin: 0;
     grid-row: 2/3;
     grid-column: 1/2;
-    text-shadow: 0 0px 70px rgba(#000000, 50%);
+    text-shadow: 0 0px 55px #000000;
   }
 
   span {
+    line-height: 0.5em;
     color: white;
     opacity: 0;
     grid-row: 3/4;

@@ -6,7 +6,6 @@
       <h1>imph</h1>
       <h2>Réalisateur numérique</h2>
       <div class="empty" />
-      <CardList />
     </template>
 
     <!-- Desktop version -->
@@ -30,12 +29,10 @@
 <script>
 import { get, sync } from 'vuex-pathify'
 
-import CardList from '@/components/CardList.vue'
 import CategoryButton from '@/components/CategoryButton.vue'
 
 export default {
   components: {
-    CardList,
     CategoryButton
   },
 
@@ -64,24 +61,7 @@ export default {
 }
 
 %text {
-  margin-left: 32px;
-  margin-right: 32px;
   text-shadow: 0 3px 6px rgba(#000000, 68%);
-}
-
-h1 {
-  @extend %text;
-  // @extend %primary-font;
-  font-weight: 300;
-  font-size: 3rem;
-  letter-spacing: .03em;
-}
-
-h2 {
-  @extend %text;
-  // @extend %secondary-font;
-  font-size: 16px;
-  font-weight: 400;
 }
 
 .empty {

@@ -21,7 +21,7 @@
 <script>
 export default {
   data () {
-    const mail = 'johanboisson@hotmail.fr'
+    const mail = 'imphfilm@gmail.com'
     return {
       links: [
         {
