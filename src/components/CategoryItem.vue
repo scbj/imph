@@ -1,8 +1,8 @@
 <template>
   <li :style="backgroundImage" class="category-item">
-    <router-link class="yo" :to="link">
+    <h3>
       {{ category.label | lowerCase }}
-    </router-link>
+    </h3>
     <span>{{ videoCount + ' vidéos' }}</span>
   </li>
 </template>
@@ -23,10 +23,6 @@ export default {
   },
 
   computed: {
-    link () {
-      return '/' + this.category.path
-    },
-
     videoCount () {
       return this.category.videos && this.category.videos.length
     },
@@ -52,7 +48,6 @@ export default {
   border-radius: 7px;
   margin: 2rem;
   padding: 1rem;
-  opacity: .3;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr auto 1fr;

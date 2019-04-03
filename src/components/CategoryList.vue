@@ -2,9 +2,8 @@
   <ul class="category-list">
     <CategoryItem
       v-for="category in categories"
-      :key="category.label"
+      :key="category.path"
       :category="category"
-      :background-source="category.thumbnailUrl"
       @over="changeBackgroundVideo(category)"
       @click.native="$router.push(category.path)"
     />
