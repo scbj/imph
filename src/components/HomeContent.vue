@@ -2,7 +2,7 @@
   <!-- Permet de gérer la différence de template entre les versions dekstop et mobile. -->
   <div class="home-content">
     <!-- Mobile version -->
-    <template v-if="['extraSmall', 'small'].includes($mq)">
+    <template v-if="lte('small')">
       <h1>imph</h1>
       <h2>Réalisateur numérique</h2>
       <div class="empty" />
@@ -29,12 +29,15 @@
 <script>
 import { get, sync } from 'vuex-pathify'
 
+import responsive from '@/mixins/responsive'
 import CategoryButton from '@/components/CategoryButton.vue'
 
 export default {
   components: {
     CategoryButton
   },
+
+  mixins: [ responsive ],
 
   computed: {
     categories: get('categories'),

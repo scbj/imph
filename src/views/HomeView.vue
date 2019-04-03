@@ -113,12 +113,11 @@ $easing: cubic-bezier(.215, .61, .355, 1);
 
 .social-links {
   position: relative;
-  opacity: .3;
-  margin-bottom: 67px;
-  transform: translateY(.4em);
-  transition: all .2s $easing .5s;
-  @media screen and (min-width: $extraLarge) {
-    margin: 92px;
+  margin-bottom: 3em;
+  @media screen and (min-width: $medium) {
+    opacity: .3;
+    transform: translateY(.4em);
+    transition: all .2s $easing;
   }
 
   &:hover {

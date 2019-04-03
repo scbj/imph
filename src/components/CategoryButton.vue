@@ -57,6 +57,7 @@ export default {
   width: 400px;
   height: 200px;
   position: relative;
+  overflow: hidden;
   box-shadow: 0px 5px 15px -5px #000000;
 
   @media screen and (min-width: $extraLarge) {

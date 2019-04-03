@@ -1,20 +1,26 @@
 <template>
   <div class="social-links">
-    <div
+    <a
       v-for="link in links"
       :key="link.label"
       class="link"
+      :href="link.url"
+      :target="anchorTarget(link.newTab)"
     >
-      <img :src="require(`@/assets/images/icon-${link.iconName}.svg`)">
-      <a :href="link.url" :target="link.openTab === false ? null : '_blank'">
+      <img :src="require(`@/assets/images/icon-${link.iconName}.svg`)" class="icon">
+      <span v-show="gte('medium')" class="text">
         {{ link.label }}
-      </a>
-    </div>
+      </span>
+    </a>
   </div>
 </template>
 
 <script>
+import responsive from '@/mixins/responsive'
+
 export default {
+  mixins: [ responsive ],
+
   data () {
     const mail = 'imphfilm@gmail.com'
     return {
@@ -33,9 +39,15 @@ export default {
           iconName: 'mail',
           label: mail,
           url: `mailto:${mail}`,
-          openTab: false
+          newTab: false
         }
       ]
+    }
+  },
+
+  methods: {
+    anchorTarget (newTab) {
+      return newTab === false ? undefined : '_blank'
     }
   }
 }
@@ -43,9 +55,9 @@ export default {
 
 <style lang="scss" scoped>
 .social-links {
-  user-select: none;
   display: flex;
   justify-content: space-around;
+  user-select: none;
 }
 
 .link {
