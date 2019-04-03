@@ -1,9 +1,9 @@
 <template>
   <div class="home-view">
-    <BackgroundVideo :source="backgroundUrl" :poster="posterUrl" />
+    <HomeBackground :video="backgroundUrl" :image="posterUrl" />
     <content>
       <BaseLogo size="small" />
-      <HomeContent />
+      <CategoryList />
       <SocialLinks />
     </content>
   </div>
@@ -12,22 +12,22 @@
 <script>
 import { get } from 'vuex-pathify'
 
-import BackgroundVideo from '@/components/BackgroundVideo.vue'
-import HomeContent from '@/components/HomeContent.vue'
+import HomeBackground from '@/components/HomeBackground.vue'
+import CategoryList from '@/components/CategoryList.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 
 export default {
   name: 'HomeView',
 
   components: {
-    BackgroundVideo,
-    HomeContent,
+    HomeBackground,
+    CategoryList,
     SocialLinks
   },
 
   data () {
     return {
-      posterUrl: ''
+      posterUrl: 'https://images.ctfassets.net/1y3017a9dcjq/1gJUo39HxZx5sANKVMqnUJ/fbf85a503fee92ea59b9225b04300b13/audience.jpg?h=500'
     }
   },
 
@@ -54,6 +54,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   position: relative;
 
   > content {
+    grid-area:  1 / 1 / 2 / 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -62,8 +63,11 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     z-index: 10;
   }
 }
+.home-background {
+    grid-area:  1 / 1 / 2 / 2;
+}
 
-.background-video {
+.home-backgrounds {
   position: fixed;
   top: 0;
   left: 0;

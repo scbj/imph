@@ -60,7 +60,7 @@ $animation-duration: .6s;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 
   animation:
     darken-background
