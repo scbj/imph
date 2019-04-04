@@ -65,7 +65,6 @@ export default {
   @include animate-scale-opacity(.4s);
 
   > .base-logo {
-    max-height: 6rem;
     filter: drop-shadow(0 0 7px rgba(255,255,255,0));
     @include animate-blink();
   }

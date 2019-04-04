@@ -45,8 +45,8 @@ export default {
 div.home-background {
   background-repeat: no-repeat;
   background-position: 40% 40%;
-  background-size: 300%;
+  background-size: cover;
   margin: -4rem;
-  filter: blur(15px) brightness(30%);
+  filter: blur(25px) brightness(15%);
 }
 </style>

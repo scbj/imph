@@ -12,8 +12,8 @@
 }
 
 html, body {
-  height: 100vh;
-  overflow-x: hidden;
+  height: 100%;
+  // overflow: hidden;
 }
 
 html {
@@ -22,6 +22,10 @@ html {
   $min-font: 12px;
   $max-font: 19px;
   @include fluid-type($min-width, $max-width, $min-font, $max-font);
+}
+
+body {
+  overflow: auto;
 }
 
 h1 {

@@ -3,6 +3,17 @@
     <HomeBackground :video="backgroundUrl" :image="posterUrl" />
     <content>
       <BaseLogo size="small" />
+      <template v-if="lte('small')">
+        <h1 class="site-name">
+          imph
+        </h1>
+        <h3 class="job">
+          Réalisateur numérique
+        </h3>
+        <h2 class="work-label">
+          projects
+        </h2>
+      </template>
       <CategoryList />
       <SocialLinks />
     </content>
@@ -12,6 +23,7 @@
 <script>
 import { get } from 'vuex-pathify'
 
+import responsive from '@/mixins/responsive'
 import HomeBackground from '@/components/HomeBackground.vue'
 import CategoryList from '@/components/CategoryList.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
@@ -24,6 +36,8 @@ export default {
     CategoryList,
     SocialLinks
   },
+
+  mixins: [ responsive ],
 
   data () {
     return {
@@ -47,77 +61,70 @@ export default {
 $easing: cubic-bezier(.215, .61, .355, 1);
 
 .home-view {
-  height: 100vh;
+  padding: 2rem;
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 100%;
   position: relative;
+  overflow: hidden;
 
   > content {
     grid-area:  1 / 1 / 2 / 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
-    z-index: 10;
   }
 }
+
 .home-background {
     grid-area:  1 / 1 / 2 / 2;
 }
 
-.home-backgrounds {
-  position: fixed;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  filter: brightness(36%);
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  @media screen and (min-width: $medium) {
-    filter: none;
-  }
-}
-
 .base-logo {
-  margin: 32px;
   align-self: flex-start;
   justify-self: flex-start;
-  max-height: 50px;
-
-  @media screen and (min-width: $medium) {
-    margin: 44px;
-    max-height: 58px;
-  }
 }
 
-.home-content {
-  flex-grow: 1;
-
-  @media screen and (min-width: $medium) {
-    align-self: stretch;
-    justify-self: stretch;
-  }
+.site-name,
+.job,
+.work-label {
+  align-self: center;
 }
 
-.social-links {
-  justify-self: center;
-  text-align: center;
+.job {
+  opacity: .87;
 }
 
-.base-logo {
-  margin: 32px;
-  @media screen and (min-width: $medium) {
-    margin: 44px;
-  }
+.site-name {
+  margin-top: 8rem;
 }
 
-.social-links {
+.work-label {
+  margin-top: 8em;
+  margin-bottom: 1em;
   position: relative;
-  margin-bottom: 3em;
+
+  &::after {
+    background: #08F4EF;
+    border-radius: 1px;
+    content: "";
+    height: 3px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3em;
+    transform-origin: 50% 50%;
+    transform: rotateZ(-2deg);
+  }
+}
+
+.social-links {
+  align-self: center;
+  text-align: center;
+  position: relative;
+  $margin: 4em;
+  margin-top: $margin;
+  margin-bottom: $margin;
   @media screen and (min-width: $medium) {
     opacity: .3;
     transform: translateY(.4em);

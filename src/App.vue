@@ -59,8 +59,7 @@ $animation-duration: .6s;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
-  min-height: 100vh;
-  overflow-x: hidden;
+  // min-height: 100vh;
 
   animation:
     darken-background
