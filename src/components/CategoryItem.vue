@@ -49,20 +49,25 @@ export default {
   // Aspect
   border-radius: 7px;
   $margin: 2rem;
-  margin-top: $margin;
-  margin-bottom: $margin;
+  margin: $margin 0;
   padding: 1rem;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr auto 1fr;
   justify-items: stretch;
   align-items: stretch;
   height: 16rem;
+  min-width: 22rem;
+  max-width: 30rem;
   // Position
   position: relative;
   overflow: hidden;
   // Effects
   box-shadow: 0px 5px 15px -5px #000000;
+
+  @media screen and (min-width: 600px) {
+    margin: $margin;
+  }
 }
 
 h3 {

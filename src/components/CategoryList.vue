@@ -34,3 +34,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-item {
+  flex: 1;
+}
+</style>

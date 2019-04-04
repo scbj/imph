@@ -1,22 +1,19 @@
 <template>
   <div class="home-view">
     <HomeBackground :video="backgroundUrl" :image="posterUrl" />
-    <content>
-      <BaseLogo size="small" />
-      <template v-if="lte('small')">
-        <h1 class="site-name">
-          imph
-        </h1>
-        <h3 class="job">
-          Réalisateur numérique
-        </h3>
-        <SocialLinks />
-        <h2 class="work-label">
-          réalisations
-        </h2>
-      </template>
-      <CategoryList />
-    </content>
+    <BaseLogo size="small" />
+    <h1 class="site-name">
+      imph
+    </h1>
+    <h3 class="job">
+      Réalisateur numérique
+    </h3>
+    <SocialLinks />
+    <h2 class="work-label">
+      réalisations
+    </h2>
+    <CategoryList />
+    <HomeFooter />
   </div>
 </template>
 
@@ -25,6 +22,7 @@ import { get } from 'vuex-pathify'
 
 import responsive from '@/mixins/responsive'
 import HomeBackground from '@/components/HomeBackground.vue'
+import HomeFooter from '@/components/HomeFooter.vue'
 import CategoryList from '@/components/CategoryList.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 
@@ -32,8 +30,9 @@ export default {
   name: 'HomeView',
 
   components: {
-    HomeBackground,
     CategoryList,
+    HomeBackground,
+    HomeFooter,
     SocialLinks
   },
 
@@ -60,24 +59,25 @@ export default {
 
 $easing: cubic-bezier(.215, .61, .355, 1);
 
+$content-padding: 2rem;
+
 .home-view {
-  padding: 2rem;
+  padding: $content-padding;
   display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  justify-items: center;
   position: relative;
   overflow: hidden;
-
-  > content {
-    grid-area:  1 / 1 / 2 / 2;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
 }
 
 .home-background {
-    grid-area:  1 / 1 / 2 / 2;
+  grid-row: 1 / 4;
+  grid-column: 1 / 2;
+  // justify-self: stretch;
+  // align-self: stretch;
+  width: 100%;
+  height: 100%;
 }
 
 .base-logo {
@@ -118,6 +118,10 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   }
 }
 
+.category-list {
+  justify-self: stretch;
+}
+
 .social-links {
   align-self: center;
   margin-top: 2em;
@@ -132,5 +136,11 @@ $easing: cubic-bezier(.215, .61, .355, 1);
     transform: translateY(0);
     transition: all .2s $easing;
   }
+}
+
+.home-footer {
+  margin: -$content-padding;
+  margin-top: 6rem;
+  justify-self: stretch;
 }
 </style>
