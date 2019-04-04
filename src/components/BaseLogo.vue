@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 img {
-  $size: 5em;
+  $size: 5rem;
   width: $size;
   height: $size;
 }

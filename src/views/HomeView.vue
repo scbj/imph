@@ -64,23 +64,34 @@ $content-padding: 2rem;
 .home-view {
   padding: $content-padding;
   display: grid;
-  grid-template-rows: auto;
   grid-template-columns: 1fr;
+  grid-template-areas:
+    "logo"
+    "h1"
+    "h3"
+    "social-links"
+    "work-label"
+    "category-list"
+    "footer";
   justify-items: center;
   position: relative;
   overflow: hidden;
+
+  & > * {
+    z-index: 1;
+  }
 }
 
 .home-background {
-  grid-row: 1 / 4;
+  grid-row: 1 / -1;
   grid-column: 1 / 2;
-  // justify-self: stretch;
-  // align-self: stretch;
-  width: 100%;
-  height: 100%;
+  justify-self: stretch;
+  margin: -4rem;
+  z-index: 0;
 }
 
 .base-logo {
+  grid-area: logo;
   align-self: flex-start;
   justify-self: flex-start;
 }
@@ -92,14 +103,17 @@ $content-padding: 2rem;
 }
 
 .job {
+  grid-area: h3;
   opacity: .87;
 }
 
 .site-name {
+  grid-area: h1;
   margin-top: 8rem;
 }
 
 .work-label {
+  grid-area: work-label;
   margin-top: 6em;
   margin-bottom: 1em;
   position: relative;
@@ -119,10 +133,12 @@ $content-padding: 2rem;
 }
 
 .category-list {
+  grid-area: category-list;
   justify-self: stretch;
 }
 
 .social-links {
+  grid-area: social-links;
   align-self: center;
   margin-top: 2em;
   @media screen and (min-width: $medium) {
@@ -139,6 +155,7 @@ $content-padding: 2rem;
 }
 
 .home-footer {
+  grid-area: footer;
   margin: -$content-padding;
   margin-top: 6rem;
   justify-self: stretch;

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="lte('small') || !video"
+    v-if="mode === 'image'"
     :style="backgroundImage"
     class="home-background"
   />
@@ -36,6 +36,12 @@ export default {
       return {
         backgroundImage: `url(${this.image})`
       }
+    },
+
+    mode () {
+      return this.lte('small') || !this.video
+        ? 'image'
+        : 'video'
     }
   }
 }
@@ -46,7 +52,6 @@ div.home-background {
   background-repeat: no-repeat;
   background-position: 40% 40%;
   background-size: cover;
-  margin: -4rem;
   filter: blur(25px) brightness(25%);
 }
 </style>
