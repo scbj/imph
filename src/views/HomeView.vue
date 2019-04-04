@@ -10,12 +10,12 @@
         <h3 class="job">
           Réalisateur numérique
         </h3>
+        <SocialLinks />
         <h2 class="work-label">
-          projects
+          réalisations
         </h2>
       </template>
       <CategoryList />
-      <SocialLinks />
     </content>
   </div>
 </template>
@@ -100,7 +100,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
 }
 
 .work-label {
-  margin-top: 8em;
+  margin-top: 6em;
   margin-bottom: 1em;
   position: relative;
 
@@ -120,11 +120,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
 
 .social-links {
   align-self: center;
-  text-align: center;
-  position: relative;
-  $margin: 4em;
-  margin-top: $margin;
-  margin-bottom: $margin;
+  margin-top: 2em;
   @media screen and (min-width: $medium) {
     opacity: .3;
     transform: translateY(.4em);

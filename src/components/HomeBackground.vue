@@ -47,6 +47,6 @@ div.home-background {
   background-position: 40% 40%;
   background-size: cover;
   margin: -4rem;
-  filter: blur(25px) brightness(15%);
+  filter: blur(25px) brightness(25%);
 }
 </style>
