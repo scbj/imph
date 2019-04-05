@@ -9,7 +9,7 @@
       Réalisateur numérique
     </h3>
     <SocialLinks />
-    <h2 class="work-label">
+    <h2 class="work-label" @click="scroll">
       réalisations
     </h2>
     <CategoryList />
@@ -50,6 +50,15 @@ export default {
     backgroundUrl () {
       return this.activeCategory && this.activeCategory.backgroundVideoUrl
     }
+  },
+
+  methods: {
+    scroll (event) {
+      event.target && event.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
   }
 }
 </script>
@@ -86,7 +95,6 @@ $content-padding: 2rem;
   grid-row: 1 / -1;
   grid-column: 1 / 2;
   justify-self: stretch;
-  margin: -4rem;
   z-index: 0;
 }
 
@@ -115,8 +123,10 @@ $content-padding: 2rem;
 .work-label {
   grid-area: work-label;
   margin-top: 6em;
-  margin-bottom: 1em;
   position: relative;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .26s cubic-bezier(.215, .61, .355, 1);
 
   &::after {
     background: #08F4EF;
@@ -129,12 +139,23 @@ $content-padding: 2rem;
     bottom: -0.3em;
     transform-origin: 50% 50%;
     transform: rotateZ(-2deg);
+    transition: transform .2s cubic-bezier(.215, .61, .355, 1);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    &::after {
+      transform: rotateZ(0) scaleY(1.8) scaleX(0.4);
+    }
   }
 }
 
 .category-list {
   grid-area: category-list;
   justify-self: stretch;
+  margin-top: 6rem;
+  margin-bottom: 10rem;
 }
 
 .social-links {
@@ -157,7 +178,6 @@ $content-padding: 2rem;
 .home-footer {
   grid-area: footer;
   margin: -$content-padding;
-  margin-top: 6rem;
   justify-self: stretch;
 }
 </style>

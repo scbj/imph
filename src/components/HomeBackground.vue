@@ -52,6 +52,16 @@ div.home-background {
   background-repeat: no-repeat;
   background-position: 40% 40%;
   background-size: cover;
+  margin: -4rem;
   filter: blur(25px) brightness(25%);
+}
+
+video.home-background {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: -2rem;
+  filter: brightness(25%);
 }
 </style>

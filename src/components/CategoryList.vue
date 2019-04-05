@@ -4,7 +4,7 @@
       v-for="category in categories"
       :key="category.path"
       :category="category"
-      @over="changeBackgroundVideo(category)"
+      @mouseover.native="changeBackgroundVideo(category)"
       @click.native="$router.push(category.path)"
     />
   </ul>
