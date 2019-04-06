@@ -1,17 +1,19 @@
 <template>
-  <div
-    v-if="mode === 'image'"
-    :style="backgroundImage"
-    class="home-background"
-  />
-  <video
-    v-else
-    class="home-background"
-    :src="video"
-    autoplay
-    loop
-    muted
-  />
+  <div class="home-background">
+    <div
+      v-if="mode === 'image'"
+      :style="backgroundImage"
+      class="image"
+    />
+    <video
+      v-else
+      :src="video"
+      class="video"
+      autoplay
+      loop
+      muted
+    />
+  </div>
 </template>
 
 <script>
@@ -48,18 +50,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.home-background {
+.home-background {
+  display: flex;
+}
+
+.image {
   background-repeat: no-repeat;
   background-position: 40% 40%;
   background-size: cover;
+  flex-grow: 1;
   margin: -4rem;
   filter: blur(25px) brightness(25%);
 }
 
-video.home-background {
+.video {
   object-fit: cover;
-  width: 100%;
-  height: 100%;
+  flex-grow: 1;
   display: flex;
   margin: -2rem;
   filter: brightness(25%);

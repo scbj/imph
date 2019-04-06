@@ -1,19 +1,21 @@
 <template>
   <div class="home-view">
+    <template v-if="lte('small')">
+      <h1 class="site-name">
+        imph
+      </h1>
+      <h3 class="job">
+        Réalisateur numérique
+      </h3>
+      <h2 class="work-label" @click="scroll">
+        réalisations
+      </h2>
+      <HomeFooter />
+    </template>
     <HomeBackground :video="backgroundUrl" :image="posterUrl" />
     <BaseLogo size="small" />
-    <h1 class="site-name">
-      imph
-    </h1>
-    <h3 class="job">
-      Réalisateur numérique
-    </h3>
-    <SocialLinks />
-    <h2 class="work-label" @click="scroll">
-      réalisations
-    </h2>
     <CategoryList />
-    <HomeFooter />
+    <SocialLinks />
   </div>
 </template>
 
@@ -76,8 +78,8 @@ $content-padding: 2rem;
   grid-template-columns: 1fr;
   grid-template-areas:
     "logo"
-    "h1"
-    "h3"
+    "site-name"
+    "job"
     "social-links"
     "work-label"
     "category-list"
@@ -85,6 +87,14 @@ $content-padding: 2rem;
   justify-items: center;
   position: relative;
   overflow: hidden;
+
+  @media screen and (min-width: $medium) {
+    grid-template-areas:
+      "logo"
+      "category-list"
+      "social-links";
+    min-height: 100vh;
+  }
 
   & > * {
     z-index: 1;
@@ -111,12 +121,12 @@ $content-padding: 2rem;
 }
 
 .job {
-  grid-area: h3;
+  grid-area: job;
   opacity: .87;
 }
 
 .site-name {
-  grid-area: h1;
+  grid-area: site-name;
   margin-top: 8rem;
 }
 
@@ -156,6 +166,10 @@ $content-padding: 2rem;
   justify-self: stretch;
   margin-top: 6rem;
   margin-bottom: 10rem;
+
+  @media screen and (min-width: $medium) {
+    margin: 0;
+  }
 }
 
 .social-links {
