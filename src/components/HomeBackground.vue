@@ -1,18 +1,24 @@
 <template>
   <div class="home-background">
-    <div
-      v-if="mode === 'image'"
-      :style="backgroundImage"
-      class="image"
-    />
-    <video
-      v-else
-      :src="video"
-      class="video"
-      autoplay
-      loop
-      muted
-    />
+    <transition
+      name="fade"
+      appear
+      mode="out-in"
+    >
+      <div
+        v-if="mode === 'image'"
+        :style="backgroundImage"
+        class="image"
+      />
+      <video
+        v-else
+        :src="video"
+        class="video"
+        autoplay
+        loop
+        muted
+      />
+    </transition>
   </div>
 </template>
 
@@ -70,4 +76,24 @@ export default {
   margin: -2rem;
   filter: brightness(25%);
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s ease;
+}
+
+.fade-leave-active {
+  transition-delay: 0;
+  transition-duration: .1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// .fade-enter-to,
+// .fade-leave {
+//   opacity: 1;
+// }
 </style>

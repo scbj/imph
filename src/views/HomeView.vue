@@ -1,22 +1,28 @@
 <template>
-  <div class="home-view">
-    <template v-if="lte('small')">
-      <h1 class="site-name">
-        imph
-      </h1>
-      <h3 class="job">
-        Réalisateur numérique
-      </h3>
-      <h2 class="work-label" @click="scroll">
-        réalisations
-      </h2>
-      <HomeFooter />
-    </template>
-    <HomeBackground :video="backgroundUrl" :image="posterUrl" />
-    <BaseLogo size="small" />
-    <CategoryList />
-    <SocialLinks />
-  </div>
+  <transition
+    name="fade"
+    appear
+    mode="out-in"
+  >
+    <div class="home-view">
+      <template v-if="lte('small')">
+        <h1 class="site-name">
+          imph
+        </h1>
+        <h3 class="job">
+          Réalisateur numérique
+        </h3>
+        <h2 class="work-label" @click="scroll">
+          réalisations
+        </h2>
+        <HomeFooter />
+      </template>
+      <HomeBackground :video="backgroundUrl" :image="posterUrl" />
+      <BaseLogo size="small" />
+      <CategoryList />
+      <SocialLinks />
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -165,7 +171,7 @@ $content-padding: 2rem;
   grid-area: category-list;
   justify-self: stretch;
   margin-top: 6rem;
-  margin-bottom: 10rem;
+  margin-bottom: 6rem;
 
   @media screen and (min-width: $medium) {
     margin: 0;
@@ -193,5 +199,15 @@ $content-padding: 2rem;
   grid-area: footer;
   margin: -$content-padding;
   justify-self: stretch;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

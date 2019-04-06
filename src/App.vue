@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <template v-if="ready">
         <router-view />
       </template>
@@ -95,10 +95,5 @@ $animation-duration: .6s;
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-.fade-leave,
-.fade-enter-to {
-  opacity: 1;
 }
 </style>

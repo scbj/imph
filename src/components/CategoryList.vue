@@ -1,18 +1,30 @@
 <template>
-  <ul class="category-list">
+  <transition-group
+    appear
+    name="staggered"
+    tag="ul"
+    class="category-list"
+    :css="false"
+    @before-enter="beforeEnter"
+    @enter="enter"
+  >
     <CategoryItem
-      v-for="category in categories"
-      :key="category.path"
+      v-for="(category, index) in categories"
+      :key="index"
+      :data-index="index"
       :category="category"
-      @mouseover.native="changeBackgroundVideo(category)"
+      @mouseover.native="mouseoverItem($event, category)"
+      @mouseleave.native="mouseLeaveItem"
       @click.native="$router.push(category.path)"
     />
-  </ul>
+  </transition-group>
 </template>
 
 <script>
 import { get, sync } from 'vuex-pathify'
+import Velocity from 'velocity-animate'
 
+import responsive from '@/mixins/responsive'
 import CategoryItem from '@/components/CategoryItem.vue'
 
 export default {
@@ -20,16 +32,48 @@ export default {
     CategoryItem
   },
 
+  mixins: [ responsive ],
+
   computed: {
     categories: get('categories'),
     activeCategory: sync('home/activeCategory')
   },
 
   methods: {
+    mouseoverItem (el, category) {
+      if (this.gte('medium')) {
+        el.target.style.opacity = 1
+        this.changeBackgroundVideo(category)
+      }
+    },
+
+    mouseLeaveItem (el) {
+      if (this.gte('medium')) {
+        el.target.style.opacity = 0.7
+      }
+    },
+
     changeBackgroundVideo (category) {
       if (this.activeCategory !== category) {
         this.activeCategory = category
       }
+    },
+
+    beforeEnter (el) {
+      el.style.opacity = 0
+      el.style.transform = 'translateY(3rem)'
+    },
+
+    enter (el, done) {
+      const delay = el.dataset.index * 125
+      const opacity = this.lte('small') ? 1 : 0.7
+      setTimeout(() => {
+        Velocity(
+          el,
+          { opacity, transform: 'translateY(0)' },
+          { complete: done }
+        )
+      }, delay)
     }
   }
 }

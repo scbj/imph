@@ -1,8 +1,8 @@
 <template>
   <div class="social-links">
     <a
-      v-for="link in links"
-      :key="link.label"
+      v-for="(link, key) in links"
+      :key="key"
       class="link"
       :href="link.url"
       :target="anchorTarget(link.newTab)"
