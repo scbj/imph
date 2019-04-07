@@ -27,6 +27,7 @@
 
 <script>
 import { get } from 'vuex-pathify'
+import scrollToElement from 'scroll-to-element'
 
 import responsive from '@/mixins/responsive'
 import HomeBackground from '@/components/HomeBackground.vue'
@@ -62,9 +63,10 @@ export default {
 
   methods: {
     scroll (event) {
-      event.target && event.target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      event.target && scrollToElement(event.target, {
+        offset: -50,
+        ease: 'out-expo',
+        duration: 750
       })
     }
   }

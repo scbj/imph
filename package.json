@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "contentful": "^7.5.0",
+    "scroll-to-element": "^2.0.3",
     "velocity-animate": "^1.5.2",
     "vue": "^2.6.6",
     "vue-mq": "^1.0.1",
