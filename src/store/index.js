@@ -24,7 +24,7 @@ const getters = {
 const actions = {
   async fetchCategories ({ commit }) {
     try {
-      const response = await fetch('.netlify/functions/category')
+      const response = await fetch('/.netlify/functions/category')
       const data = await response.json()
       if (data) {
         commit('SET_CATEGORIES', data.sort((a, b) => a.order - b.order))
