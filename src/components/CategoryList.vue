@@ -15,7 +15,7 @@
       :category="category"
       @mouseover.native="mouseoverItem($event, category)"
       @mouseleave.native="mouseLeaveItem"
-      @click.native="$router.push(category.path)"
+      @click.native="navigateTo(category)"
     />
   </transition-group>
 </template>
@@ -57,6 +57,13 @@ export default {
       if (this.activeCategory !== category) {
         this.activeCategory = category
       }
+    },
+
+    navigateTo (category) {
+      this.$router.push({
+        name: 'videos',
+        params: { category: category.name }
+      })
     },
 
     beforeEnter (el) {

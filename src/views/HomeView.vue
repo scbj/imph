@@ -205,7 +205,7 @@ $content-padding: 2rem;
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: opacity .4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .fade-enter,

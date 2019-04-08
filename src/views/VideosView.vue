@@ -1,7 +1,18 @@
 <template>
-  <div class="videos-view">
-    Some code here
-  </div>
+  <transition
+    name="fade"
+    appear
+    mode="out-in"
+  >
+    <div class="videos-view">
+      <template v-if="videos">
+        Some code here
+      </template>
+      <template v-else>
+        No videos now...
+      </template>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -14,12 +25,22 @@ export default {
     }
   },
 
+  computed: {
+    videos () {
+      return this.category && this.category.videos
+    }
+  },
+
   mounted () {
     // Find active category and store it as data
     this.category = this.findActiveCategory({
       categories: this.$store.get('categories'),
       categoryName: this.$route.params.category
     })
+
+    if (!this.category) {
+      this.$router.push({ name: 'home' })
+    }
   },
 
   methods: {
@@ -39,4 +60,13 @@ export default {
 
 <style lang="scss" scoped>
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
