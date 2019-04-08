@@ -48,7 +48,6 @@ export default {
 
   methods: {
     findActiveCategory ({ categories, categoryName }) {
-      console.log('Call')
       if (!categories) {
         return console.log("Category list isn't valid")
       } else if (!categories.length) {
@@ -66,6 +65,7 @@ export default {
 .videos-view {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
   height: 100vh;
   overflow-y: auto;
 }
