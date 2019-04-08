@@ -73,7 +73,7 @@ $animation-duration: .6s;
   color: black;
 }
 
-.theme-light {
+.theme-neutral {
   background:#ffffff;
   color: black;
 

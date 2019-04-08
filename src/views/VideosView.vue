@@ -4,13 +4,16 @@
     appear
     mode="out-in"
   >
-    <div class="videos-view">
-      <template v-if="videos">
-        Some code here
-      </template>
-      <template v-else>
-        No videos now...
-      </template>
+    <div :class="'theme-' + category.theme" class="videos-view">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <BaseLogo size="small" />
+      </router-link>
+      <ul class="videos">
+        <li v-for="video in category.videos" :key="video.name" class="video">
+          <img :src="video.thumbnailUrl" class="thumbnail">
+        </li>
+      </ul>
+      <h2 class="title">{{ category.label }}</h2>
     </div>
   </transition>
 </template>
@@ -59,6 +62,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.videos-view {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo,
+.title {
+  margin: 3rem;
+}
+
+.videos {
+  flex-grow: 1;
+  list-style: none;
+}
+
+.video {
+  margin: 2rem;
+}
+
+.thumbnail {
+  border-radius: 7px;
+  width: 20rem;
+}
 
 .fade-enter-active,
 .fade-leave-active {
