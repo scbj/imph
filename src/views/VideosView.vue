@@ -9,11 +9,17 @@
         <BaseLogo size="small" />
       </router-link>
       <ul class="videos">
-        <li v-for="video in category.videos" :key="video.name" class="video">
+        <li
+          v-for="video in category.videos"
+          :key="video.name"
+          class="video"
+        >
           <img :src="video.thumbnailUrl" class="thumbnail">
         </li>
       </ul>
-      <h2 class="title">{{ category.label }}</h2>
+      <h2 class="title">
+        {{ category.label }}
+      </h2>
     </div>
   </transition>
 </template>
@@ -22,25 +28,19 @@
 export default {
   name: 'VideosView',
 
-  data () {
-    return {
-      category: null
-    }
-  },
-
   computed: {
     videos () {
       return this.category && this.category.videos
+    },
+    category () {
+      return this.findActiveCategory({
+        categories: this.$store.get('categories'),
+        categoryName: this.$route.params.category
+      })
     }
   },
 
-  mounted () {
-    // Find active category and store it as data
-    this.category = this.findActiveCategory({
-      categories: this.$store.get('categories'),
-      categoryName: this.$route.params.category
-    })
-
+  created () {
     if (!this.category) {
       this.$router.push({ name: 'home' })
     }
@@ -48,6 +48,7 @@ export default {
 
   methods: {
     findActiveCategory ({ categories, categoryName }) {
+      console.log('Call')
       if (!categories) {
         return console.log("Category list isn't valid")
       } else if (!categories.length) {
