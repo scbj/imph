@@ -4,7 +4,7 @@
     appear
     mode="out-in"
   >
-    <div :class="'theme-' + category.theme" class="videos-view">
+    <div class="videos-view">
       <router-link :to="{ name: 'home' }" class="logo">
         <BaseLogo size="small" />
       </router-link>
@@ -20,13 +20,20 @@
       <h2 class="title">
         {{ category.label }}
       </h2>
+      <HomeFooter />
     </div>
   </transition>
 </template>
 
 <script>
+import HomeFooter from '@/components/HomeFooter.vue'
+
 export default {
   name: 'VideosView',
+
+  components: {
+    HomeFooter
+  },
 
   computed: {
     videos () {
@@ -64,29 +71,46 @@ export default {
 <style lang="scss" scoped>
 .videos-view {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 20% 1fr auto;
+  grid-template-rows: auto auto;
   align-items: flex-start;
-  height: 100vh;
-  overflow-y: auto;
+  // height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  > * {
+    z-index: 10;
+  }
 }
 
 .logo,
 .title {
   margin: 3rem;
+  position: sticky;
+  top: 3rem;
 }
 
 .videos {
   flex-grow: 1;
   list-style: none;
+  margin: 8rem 0;
 }
 
 .video {
-  margin: 2rem;
+  margin: 5rem auto;
+
+  > img {
+    box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
+  }
 }
 
 .thumbnail {
   border-radius: 7px;
   width: 20rem;
+}
+
+.home-footer {
+  grid-column: 1 / -1;
 }
 
 .fade-enter-active,

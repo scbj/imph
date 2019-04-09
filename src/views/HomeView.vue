@@ -105,7 +105,7 @@ $content-padding: 2rem;
   }
 
   & > * {
-    z-index: 1;
+    z-index: 10;
   }
 }
 

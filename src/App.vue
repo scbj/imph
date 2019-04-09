@@ -73,16 +73,6 @@ $animation-duration: .6s;
   color: black;
 }
 
-.theme-neutral {
-  background:#ffffff;
-  color: black;
-
-  ::selection {
-    background: rgba(black, 0.996);
-    color: white;
-  }
-}
-
 // Animations
 @keyframes darken-background {
   to { background: #000000 }

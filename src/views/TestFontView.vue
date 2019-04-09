@@ -1,6 +1,5 @@
 <template>
   <div class="test-font-view">
-    <TestFontCanvas class="theme-neutral" />
     <TestFontCanvas />
   </div>
 </template>
