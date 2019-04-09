@@ -43,6 +43,7 @@ export default {
 
 .category-item {
   // Background image properties
+  background-color: #000000;
   background-repeat: no-repeat;
   background-position: 40% 40%;
   background-size: 300%;

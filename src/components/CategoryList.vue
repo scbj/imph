@@ -1,13 +1,5 @@
 <template>
-  <transition-group
-    appear
-    name="staggered"
-    tag="ul"
-    class="category-list"
-    :css="false"
-    @before-enter="beforeEnter"
-    @enter="enter"
-  >
+  <StaggeredList :opacity="() => lte('small') ? 1 : 0.7" class="category-list">
     <CategoryItem
       v-for="(category, index) in categories"
       :key="index"
@@ -17,19 +9,20 @@
       @mouseleave.native="mouseLeaveItem"
       @click.native="navigateTo(category)"
     />
-  </transition-group>
+  </StaggeredList>
 </template>
 
 <script>
 import { get, sync } from 'vuex-pathify'
-import Velocity from 'velocity-animate'
 
 import responsive from '@/mixins/responsive'
 import CategoryItem from '@/components/CategoryItem.vue'
+import StaggeredList from '@/components/StaggeredList.vue'
 
 export default {
   components: {
-    CategoryItem
+    CategoryItem,
+    StaggeredList
   },
 
   mixins: [ responsive ],
@@ -64,24 +57,24 @@ export default {
         name: 'videos',
         params: { category: category.name }
       })
-    },
-
-    beforeEnter (el) {
-      el.style.opacity = 0
-      el.style.transform = 'translateY(3rem)'
-    },
-
-    enter (el, done) {
-      const delay = el.dataset.index * 125
-      const opacity = this.lte('small') ? 1 : 0.7
-      setTimeout(() => {
-        Velocity(
-          el,
-          { opacity, transform: 'translateY(0)' },
-          { complete: done }
-        )
-      }, delay)
     }
+
+    // beforeEnter (el) {
+    //   el.style.opacity = 0
+    //   el.style.transform = 'translateY(3rem)'
+    // },
+
+    // enter (el, done) {
+    //   const delay = el.dataset.index * 125
+    //   const opacity = this.lte('small') ? 1 : 0.7
+    //   setTimeout(() => {
+    //     Velocity(
+    //       el,
+    //       { opacity, transform: 'translateY(0)' },
+    //       { complete: done }
+    //     )
+    //   }, delay)
+    // }
   }
 }
 </script>

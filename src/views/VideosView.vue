@@ -8,15 +8,16 @@
       <router-link :to="{ name: 'home' }" class="logo">
         <BaseLogo size="small" />
       </router-link>
-      <ul class="videos">
+      <StaggeredList class="videos">
         <li
-          v-for="video in category.videos"
-          :key="video.name"
+          v-for="(video, index) in category.videos"
+          :key="index"
+          :data-index="index"
           class="video"
         >
           <img :src="video.thumbnailUrl" class="thumbnail">
         </li>
-      </ul>
+      </StaggeredList>
       <h2 class="title">
         {{ category.label }}
       </h2>
@@ -27,12 +28,14 @@
 
 <script>
 import HomeFooter from '@/components/HomeFooter.vue'
+import StaggeredList from '@/components/StaggeredList.vue'
 
 export default {
   name: 'VideosView',
 
   components: {
-    HomeFooter
+    HomeFooter,
+    StaggeredList
   },
 
   computed: {
