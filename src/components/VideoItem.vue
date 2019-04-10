@@ -1,9 +1,15 @@
 <template>
-  <li class="video-item">
+  <li
+    class="video-item"
+    @mouseenter="mouseOver = true"
+    @mouseleave="mouseOver = false"
+  >
     <img :src="video.thumbnailUrl" class="thumbnail">
-    <h2 class="title">
-      {{ video.title }}
-    </h2>
+    <GlitchyText class="title" :animate="mouseOver">
+      <h2>
+        {{ video.title }}
+      </h2>
+    </GlitchyText>
     <h3 class="artist">
       {{ video.artist }}
     </h3>
@@ -15,11 +21,23 @@
 </template>
 
 <script>
+import GlitchyText from '@/components/GlitchyText.vue'
+
 export default {
+  components: {
+    GlitchyText
+  },
+
   props: {
     video: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mouseOver: false
     }
   }
 }
@@ -48,6 +66,9 @@ $easing: cubic-bezier(.165, .84, .44, 1);
     .title,
     .artist {
       transform: translate3d(.5em, .5em, 0)
+    }
+    .title {
+      text-shadow: 0 .04em .2em rgba(#000000, 30%);
     }
   }
 }
@@ -83,6 +104,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   color: #08F4EF;
   grid-area: 1 / -2 / 2 / -1;
   align-self: flex-end;
+  justify-self: flex-start;
   opacity: 0;
   display: flex;
   flex-direction: row;
@@ -96,6 +118,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   background-color: rgba(#65EEEB, 89%);
   flex-grow: 1;
   margin: 1rem;
+  width: 10rem;
   height: 2px;
   box-shadow: 0 0 8px #61E5E2, 0 0 16px #61E5E2;
 }
