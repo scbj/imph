@@ -1,11 +1,12 @@
 <template>
   <li
+    :class="{ reverse: reverseAlignement }"
     class="video-item"
     @mouseenter="mouseOver = true"
     @mouseleave="mouseOver = false"
   >
     <img :src="video.thumbnailUrl" class="thumbnail">
-    <GlitchyText class="title" :animate="mouseOver">
+    <GlitchyText class="title" :animate="gte('medium') && mouseOver">
       <h2>
         {{ video.title }}
       </h2>
@@ -13,7 +14,7 @@
     <h3 class="artist">
       {{ video.artist }}
     </h3>
-    <div v-if="video.tag" class="tag">
+    <div v-if="gte('medium') && video.tag" class="tag">
       <div class="line" />
       <span>{{ video.tag }}</span>
     </div>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import responsive from '@/mixins/responsive'
 import GlitchyText from '@/components/GlitchyText.vue'
 
 export default {
@@ -28,10 +30,16 @@ export default {
     GlitchyText
   },
 
+  mixins: [ responsive ],
+
   props: {
     video: {
       type: Object,
       required: true
+    },
+    reverseAlignement: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -44,32 +52,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/_vars.scss';
+
 $easing: cubic-bezier(.165, .84, .44, 1);
 
 .video-item {
-  margin: 7rem 18rem 7rem 0;
+  margin: 7rem 2rem;
   display: grid;
-  grid-template-columns: 19rem 5rem 1fr;
-  grid-template-rows: 1fr auto auto;
+  grid-template-columns: 1fr 10fr;
+  // grid-template-rows: 10fr repeat(2, auto) 1fr;
+  grid-template-rows: 10fr auto 1fr;
   align-items: center;
   cursor: pointer;
 
-  &:hover {
-    > .tag {
-      opacity: 1;
-      transform: none;
+  .thumbnail { grid-area: 1 / 2 / -1 / -1; }
+  .title { grid-area: 1 / 1 / 2 / -1 }
+  .artist { grid-area: 2 / 1 / 3 / -1 }
+
+  @media screen and (min-width: $medium){
+    margin: 7rem 12rem 7rem 0;
+    grid-template-columns: 19rem 5rem 1fr;
+    grid-template-rows: 1fr repeat(2, auto);
+
+    .thumbnail { grid-area: 1 / 1 / 3 / 3; }
+    .title { grid-area: 2 / 2 / 3 / -1 }
+    .artist { grid-area: 3 / 2 / 4 / -1 }
+
+    &:hover {
+      > .tag {
+        opacity: 1;
+        transform: none;
+      }
+      .thumbnail {
+        box-shadow: 10px 15px 70px -5px rgba(#08F4EF, 20%);
+        transform: translate3d(-0.5em, -0.5em, 0)
+      }
+      .title,
+      .artist {
+        transform: translate3d(.5em, .5em, 0)
+      }
+      .title {
+        text-shadow: 0 .04em .2em rgba(#000000, 30%);
+      }
     }
-    .thumbnail {
-      box-shadow: 10px 15px 70px -5px rgba(#08F4EF, 20%);
-      transform: translate3d(-0.5em, -0.5em, 0)
-    }
-    .title,
-    .artist {
-      transform: translate3d(.5em, .5em, 0)
-    }
-    .title {
-      text-shadow: 0 .04em .2em rgba(#000000, 30%);
-    }
+  }
+
+  @media screen and (min-width: $large){
+    margin-right: 18rem;
   }
 }
 
@@ -85,18 +114,20 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 .title,
 .artist,
 .tag {
-  margin: .5em 0;
   text-shadow: 0 .04em .2em rgba(#000000, 30%);
   transition: transform .3s $easing;
   z-index: 2;
 }
 
 .title {
+  margin-bottom: 0.5em;
   grid-area: 2 / 2 / 3 / -1;
+  align-self: flex-end;
 }
 
 .artist {
   color: #08F4EF;
+  margin-top: 0.5em;
   grid-area: 3 / 2 / 4 / -1;
 }
 
