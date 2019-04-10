@@ -8,16 +8,7 @@
       <router-link :to="{ name: 'home' }" class="logo">
         <BaseLogo size="small" />
       </router-link>
-      <StaggeredList class="videos">
-        <li
-          v-for="(video, index) in category.videos"
-          :key="index"
-          :data-index="index"
-          class="video"
-        >
-          <img :src="video.thumbnailUrl" class="thumbnail">
-        </li>
-      </StaggeredList>
+      <VideoList :videos="category.videos" />
       <h2 class="title">
         {{ category.label }}
       </h2>
@@ -28,14 +19,14 @@
 
 <script>
 import HomeFooter from '@/components/HomeFooter.vue'
-import StaggeredList from '@/components/StaggeredList.vue'
+import VideoList from '@/components/VideoList.vue'
 
 export default {
   name: 'VideosView',
 
   components: {
     HomeFooter,
-    StaggeredList
+    VideoList
   },
 
   computed: {
@@ -79,7 +70,6 @@ export default {
   align-items: flex-start;
   // height: 100vh;
   position: relative;
-  overflow: hidden;
 
   > * {
     z-index: 10;
@@ -93,23 +83,12 @@ export default {
   top: 3rem;
 }
 
-.videos {
-  flex-grow: 1;
-  list-style: none;
-  margin: 8rem 0;
+.title {
+  grid-area: 1 / 3 / 2 / 4;
 }
 
-.video {
-  margin: 5rem auto;
-
-  > img {
-    box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
-  }
-}
-
-.thumbnail {
-  border-radius: 7px;
-  width: 20rem;
+.video-list {
+  grid-column: 2 / 4
 }
 
 .home-footer {
