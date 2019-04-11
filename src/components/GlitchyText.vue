@@ -29,8 +29,8 @@ export default {
 <style lang="scss" scoped>
 .glitchy-text {
   display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 100%;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
 }
 
 .text {

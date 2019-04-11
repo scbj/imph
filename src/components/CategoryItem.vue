@@ -53,7 +53,7 @@ export default {
   margin: $margin 0;
   padding: 1rem;
   display: inline-grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr auto 1fr;
   justify-items: center;
   align-items: stretch;

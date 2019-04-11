@@ -65,7 +65,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 .video-item {
   margin: 7rem 2rem;
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 5fr;
   // grid-template-rows: 10fr repeat(2, auto) 1fr;
   grid-template-rows: 10fr auto 1fr;
   align-items: center;
