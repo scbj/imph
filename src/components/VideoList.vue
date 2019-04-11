@@ -32,11 +32,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.videos {
-  flex-grow: 1;
-  list-style: none;
-  margin: 8rem 0;
-}
-</style>
