@@ -29,7 +29,7 @@ export default {
 
     backgroundImage () {
       return {
-        backgroundImage: `url(${this.category.thumbnailUrl})`
+        backgroundImage: `url(${this.category.thumbnail.url}?h=500)`
       }
     }
   }

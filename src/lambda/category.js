@@ -10,6 +10,35 @@ const client = createClient({
   environment
 })
 
+function simplifyReference (data) {
+  if ('fields' in data && 'sys' in data) {
+    const { fields } = data
+    if ('file' in fields) {
+      return fields.file
+    }
+    return fields
+  }
+  return data
+}
+
+function simplifyContentfulRefs (data) {
+  if (data === null || typeof data !== 'object') {
+    return data
+  }
+
+  // If it's an array
+  if (Array.isArray(data)) {
+    return data.map(value => simplifyContentfulRefs(value))
+  }
+
+  // If it's an object
+  data = simplifyReference(data)
+  Object.keys(data).forEach(key => {
+    data[key] = simplifyContentfulRefs(data[key])
+  })
+  return data
+}
+
 async function fetchEntries (contentType) {
   try {
     const entries = await client.getEntries({
@@ -25,24 +54,17 @@ export async function handler (event, context, callback) {
   try {
     const categories = await fetchEntries('category')
     if (categories) {
+      simplifyContentfulRefs(categories)
       return callback(null, {
         statusCode: 200,
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(categories.map(category => {
-          // Delete the intermediate node created by Contentful
-          const { videos, backgroundVideo, ...fields } = category
-          return {
-            ...fields,
-            backgroundVideoUrl: backgroundVideo && backgroundVideo.fields.file.url,
-            videos: videos && videos.map(video => video.fields)
-          }
-        }))
+        body: JSON.stringify(simplifyContentfulRefs(categories))
       })
     }
   } catch (error) {
-    console.log('Failed to handle function.')
+    console.log('Failed to handle function.', error)
   }
 
   try {

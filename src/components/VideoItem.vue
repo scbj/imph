@@ -5,7 +5,7 @@
     @mouseenter="mouseOver = true"
     @mouseleave="mouseOver = false"
   >
-    <img :src="video.thumbnailUrl" class="thumbnail">
+    <img :src="thumbnailUrl" class="thumbnail">
     <GlitchyText class="title" :animate="gte('medium') && mouseOver">
       <h2>
         {{ video.title }}
@@ -46,6 +46,12 @@ export default {
   data () {
     return {
       mouseOver: false
+    }
+  },
+
+  computed: {
+    thumbnailUrl () {
+      return `${this.video.thumbnail.url}?h=680`
     }
   }
 }

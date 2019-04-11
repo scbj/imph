@@ -6,9 +6,11 @@
   >
     <div class="home-view">
       <template v-if="lte('small')">
-        <h1 class="site-name">
-          imph
-        </h1>
+        <GlitchyText class="site-name">
+          <h1>
+            imph
+          </h1>
+        </GlitchyText>
         <h3 class="job">
           Réalisateur numérique
         </h3>
@@ -30,9 +32,10 @@ import { get } from 'vuex-pathify'
 import scrollToElement from 'scroll-to-element'
 
 import responsive from '@/mixins/responsive'
+import CategoryList from '@/components/CategoryList.vue'
+import GlitchyText from '@/components/GlitchyText.vue'
 import HomeBackground from '@/components/HomeBackground.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
-import CategoryList from '@/components/CategoryList.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 
 export default {
@@ -40,6 +43,7 @@ export default {
 
   components: {
     CategoryList,
+    GlitchyText,
     HomeBackground,
     HomeFooter,
     SocialLinks
@@ -144,7 +148,6 @@ $content-padding: 2rem;
   position: relative;
   user-select: none;
   cursor: pointer;
-  transition: transform .26s cubic-bezier(.215, .61, .355, 1);
 
   &::after {
     background: #08F4EF;
@@ -160,13 +163,18 @@ $content-padding: 2rem;
     transition: transform .2s cubic-bezier(.215, .61, .355, 1);
   }
 
-  &:hover {
-    transform: scale(1.05);
+  @media screen and (min-width: $medium) {
+    transition: transform .26s cubic-bezier(.215, .61, .355, 1);
 
-    &::after {
-      transform: rotateZ(0) scaleY(1.8) scaleX(0.4);
+    &:hover {
+      transform: scale(1.05);
+
+      &::after {
+        transform: rotateZ(0) scaleY(1.8) scaleX(0.4);
+      }
     }
   }
+
 }
 
 .category-list {

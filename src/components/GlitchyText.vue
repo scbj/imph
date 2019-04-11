@@ -20,7 +20,7 @@ export default {
   props: {
     animate: {
       type: Boolean,
-      default: false
+      default: true
     }
   }
 }
