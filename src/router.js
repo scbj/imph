@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const HomeView = () => import('@/views/HomeView')
+const NotFoundView = () => import('@/views/NotFoundView')
 const VideosView = () => import('@/views/VideosView')
 const TestFontView = () => import('@/views/TestFontView')
 
@@ -13,6 +14,7 @@ export default new Router({
   routes: [
     { path: '/', name: 'home', component: HomeView },
     { path: '/dev/font', name: 'font', component: TestFontView },
-    { path: '/:category/videos', name: 'videos', component: VideosView }
+    { path: '/:category/videos', name: 'videos', component: VideosView },
+    { path: '*', name: '404', component: NotFoundView }
   ]
 })
