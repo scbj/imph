@@ -97,7 +97,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
         transform: translate3d(.5em, .5em, 0)
       }
       .title {
-        text-shadow: 0 .04em .2em rgba(#000000, 30%);
+        text-shadow: 0 0.1em 1em rgba(#000000, 0);
       }
     }
   }
@@ -119,7 +119,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 .title,
 .artist,
 .tag {
-  text-shadow: 0 .04em .2em rgba(#000000, 30%);
+  text-shadow: 0 0.1em 1em rgba(#000000, 60%);
   transition: transform .3s $easing;
   z-index: 2;
 }
