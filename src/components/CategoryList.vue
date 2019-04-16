@@ -33,16 +33,16 @@ export default {
   },
 
   methods: {
-    mouseoverItem (el, category) {
+    mouseoverItem (event, category) {
       if (this.gte('medium')) {
-        el.target.style.opacity = 1
+        event.target.style.opacity = 1
         this.changeBackgroundVideo(category)
       }
     },
 
-    mouseLeaveItem (el) {
+    mouseLeaveItem (event) {
       if (this.gte('medium')) {
-        el.target.style.opacity = 0.7
+        event.target.style.opacity = 0.7
       }
     },
 
@@ -58,23 +58,6 @@ export default {
         params: { category: category.name }
       })
     }
-
-    // beforeEnter (el) {
-    //   el.style.opacity = 0
-    //   el.style.transform = 'translateY(3rem)'
-    // },
-
-    // enter (el, done) {
-    //   const delay = el.dataset.index * 125
-    //   const opacity = this.lte('small') ? 1 : 0.7
-    //   setTimeout(() => {
-    //     Velocity(
-    //       el,
-    //       { opacity, transform: 'translateY(0)' },
-    //       { complete: done }
-    //     )
-    //   }, delay)
-    // }
   }
 }
 </script>
