@@ -16,5 +16,14 @@ export default new Router({
     { path: '/dev/font', name: 'font', component: TestFontView },
     { path: '/:category/videos', name: 'videos', component: VideosView },
     { path: '*', name: '404', component: NotFoundView }
-  ]
+  ],
+  scrollBehavior  (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+    return { x: 0, y: 0 }
+  }
 })

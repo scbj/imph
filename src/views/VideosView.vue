@@ -1,9 +1,5 @@
 <template>
-  <transition
-    name="fade"
-    appear
-    mode="out-in"
-  >
+  <TransitionFade>
     <div class="videos-view">
       <router-link :to="{ name: 'home' }" class="logo">
         <BaseLogo size="small" />
@@ -16,13 +12,14 @@
       </GlitchyText>
       <HomeFooter />
     </div>
-  </transition>
+  </TransitionFade>
 </template>
 
 <script>
 import responsive from '@/mixins/responsive'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
+import TransitionFade from '@/components/TransitionFade'
 import VideoList from '@/components/VideoList.vue'
 
 export default {
@@ -31,6 +28,7 @@ export default {
   components: {
     GlitchyText,
     HomeFooter,
+    TransitionFade,
     VideoList
   },
 

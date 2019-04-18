@@ -1,9 +1,5 @@
 <template>
-  <transition
-    name="fade"
-    appear
-    mode="out-in"
-  >
+  <TransitionFade>
     <div class="home-view">
       <template v-if="lte('small')">
         <GlitchyText class="site-name">
@@ -24,7 +20,7 @@
       <CategoryList />
       <SocialLinks />
     </div>
-  </transition>
+  </TransitionFade>
 </template>
 
 <script>
@@ -37,6 +33,7 @@ import GlitchyText from '@/components/GlitchyText.vue'
 import HomeBackground from '@/components/HomeBackground.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
+import TransitionFade from '@/components/TransitionFade'
 
 export default {
   name: 'HomeView',
@@ -46,7 +43,8 @@ export default {
     GlitchyText,
     HomeBackground,
     HomeFooter,
-    SocialLinks
+    SocialLinks,
+    TransitionFade
   },
 
   mixins: [ responsive ],
@@ -209,15 +207,5 @@ $content-padding: 2rem;
   grid-area: footer;
   margin: -$content-padding;
   justify-self: stretch;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

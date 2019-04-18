@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
+    <TransitionFade>
       <template v-if="ready">
         <router-view />
       </template>
       <StartupView v-else />
-    </transition>
+    </TransitionFade>
   </div>
 </template>
 
@@ -13,10 +13,12 @@
 import { get } from 'vuex-pathify'
 
 import StartupView from '@/views/StartupView'
+import TransitionFade from '@/components/TransitionFade'
 
 export default {
   components: {
-    StartupView
+    StartupView,
+    TransitionFade
   },
 
   data () {
@@ -76,14 +78,5 @@ $animation-duration: .6s;
 // Animations
 @keyframes darken-background {
   to { background: #000000 }
-}
-
-.fade-enter-active,
-.fade-leave-active  {
-  transition: opacity .3s cubic-bezier(.165, .84, .44, 1);
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
