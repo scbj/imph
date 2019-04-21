@@ -4,6 +4,7 @@
     class="video-item"
     @mouseenter="mouseOver = true"
     @mouseleave="mouseOver = false"
+    @click="openPlayer"
   >
     <img :src="thumbnailUrl" class="thumbnail">
     <GlitchyText class="title" :animate="gte('medium') && mouseOver">
@@ -52,6 +53,13 @@ export default {
   computed: {
     thumbnailUrl () {
       return `${this.video.thumbnail.url}?h=680`
+    }
+  },
+
+  methods: {
+    openPlayer () {
+      const { youTubeId } = this.video
+      this.$router.push({ name: 'player', params: { id: youTubeId } })
     }
   }
 }

@@ -3,6 +3,11 @@
 @import '_fonts';
 @import '_reset';
 
+:root {
+  --overflow-y: auto;
+  --overflow-offset: 0px;
+}
+
 *,
 *::before,
 *::after {
@@ -20,7 +25,9 @@ html {
 }
 
 body {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: var(--overflow-y);
+  transform: translateY(var(--overflow-offset))
 }
 
 h1 {

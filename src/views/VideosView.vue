@@ -11,6 +11,7 @@
         </h2>
       </GlitchyText>
       <HomeFooter />
+      <router-view />
     </div>
   </TransitionFade>
 </template>
