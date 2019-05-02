@@ -58,8 +58,7 @@ export default {
 
   methods: {
     openPlayer () {
-      const { youTubeId } = this.video
-      this.$router.push({ name: 'player', params: { id: youTubeId } })
+      this.$store.dispatch('player/play', this.video)
     }
   }
 }
