@@ -22,7 +22,8 @@ export default {
       player: null,
       aspectRatio: 1,
       iframe: null,
-      ready: false
+      ready: false,
+      width: 0
     }
   },
 
@@ -35,15 +36,8 @@ export default {
         this.aspectRatio = height / width
       }
     },
-    aspectRatio: {
-      handler (value) {
-        // Resize ifram with corresponding aspect ratio
-        const parentWidth = this.$parent.$el.offsetWidth
-        this.iframe.setAttribute('width', parentWidth)
-        this.iframe.setAttribute('height', parentWidth * value)
-        this.ready = true
-      }
-    }
+    aspectRatio: 'resizeIframe',
+    width: 'resizeIframe'
   },
 
   mounted () {
@@ -53,9 +47,29 @@ export default {
     } else {
       this.loadIframeApi()
     }
+
+    this.observeRezise()
   },
 
   methods: {
+    observeRezise () {
+      const resizeObserver = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          this.width = entry.contentRect.width
+        }
+      })
+      resizeObserver.observe(this.$el)
+    },
+
+    resizeIframe () {
+      if (this.iframe && this.width) {
+        // Resize iframe with corresponding aspect ratio
+        this.iframe.setAttribute('width', this.width)
+        this.iframe.setAttribute('height', this.width * this.aspectRatio)
+        this.ready = true
+      }
+    },
+
     /** Loads the YouTube IFrame Player API code asynchronously. */
     loadIframeApi () {
       // Register global handle

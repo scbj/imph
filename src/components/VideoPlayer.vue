@@ -31,5 +31,6 @@ export default {
 .video-player {
   border-radius: 12.6px;
   overflow: hidden;
+  box-shadow: 0 0 74px rgba(black, 80%);
 }
 </style>
