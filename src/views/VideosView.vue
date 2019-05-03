@@ -1,22 +1,32 @@
 <template>
   <TransitionFade>
-    <div class="videos-view">
-      <router-link :to="{ name: 'home' }" class="logo">
+    <div :class="{ minimal: playerOpened }" class="videos-view">
+      <router-link
+        :to="{ name: 'home' }"
+        class="logo"
+        :class="playerReactive"
+      >
         <BaseLogo size="small" />
       </router-link>
-      <VideoList :videos="category.videos" />
-      <GlitchyText class="title" :animate="lte('small')">
+      <VideoList :class="playerReactive" :videos="category.videos" />
+      <GlitchyText
+        :class="playerReactive"
+        class="title"
+        :animate="lte('small')"
+      >
         <h2>
           {{ category.label }}
         </h2>
       </GlitchyText>
-      <HomeFooter />
+      <HomeFooter :class="playerReactive" />
       <router-view />
     </div>
   </TransitionFade>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import responsive from '@/mixins/responsive'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
@@ -36,6 +46,7 @@ export default {
   mixins: [ responsive ],
 
   computed: {
+    playerOpened: get('player/opened'),
     videos () {
       return this.category && this.category.videos
     },
@@ -44,6 +55,13 @@ export default {
         categories: this.$store.get('categories'),
         categoryName: this.$route.params.category
       })
+    },
+
+    playerReactive () {
+      return {
+        blurred: this.playerOpened,
+        out: this.playerOpened
+      }
     }
   },
 
@@ -80,6 +98,13 @@ export default {
 
   > * {
     z-index: 10;
+    transition: filter .3s ease-in-out;
+  }
+
+  &.minimal {
+    .video-list {
+      transform: translateX(-8rem);
+    }
   }
 }
 
@@ -104,10 +129,15 @@ export default {
 
 .video-list {
   grid-column: 1 / 4;
+  transition: transform .2s cubic-bezier(.165, .84, .44, 1);
 
   @media screen and(min-width: $medium) {
     grid-column: 2 / 4;
   }
+}
+
+.blurred {
+  filter: blur(8px)
 }
 
 .home-footer {

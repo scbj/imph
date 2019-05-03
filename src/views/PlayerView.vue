@@ -23,10 +23,13 @@ export default {
   },
 
   computed: {
+    opened: sync('player/opened'),
     video: sync('player/activeVideo')
   },
 
   created () {
+    this.opened = true
+
     // TODO: Utiliser plutôt un middleware sur le router pour savoir si la route existe
     const retreiveVideo = () => {
       if (this.video) {
@@ -50,6 +53,7 @@ export default {
   },
 
   beforeDestroy () {
+    this.opened = false
     this.hackWrongScrollBehavior(true)
   },
 
@@ -76,7 +80,7 @@ export default {
 .player-view {
   background: rgba(black, 80%);
   display: grid;
-  grid-template-columns: 4fr minmax(auto, 1060px) 1fr;
+  grid-template-columns: minmax(200px, 3fr) minmax(auto, 1060px) minmax(100px, 1fr);
   grid-template-rows: 1fr auto auto 4fr;
   align-items: flex-start;
   position: fixed;

@@ -1,5 +1,5 @@
 <template>
-  <div class="video-player">
+  <div :class="{ 'drop-shadow': state === 'playing' }" class="video-player">
     <EmbedYouTube v-model="state" :video-id="videoId" />
   </div>
 </template>
@@ -31,6 +31,12 @@ export default {
 .video-player {
   border-radius: 12.6px;
   overflow: hidden;
-  box-shadow: 0 0 74px rgba(black, 80%);
+  box-shadow: 0 0 10px rgba(black, 0%);
+
+  transition: box-shadow .2s ease-out;
+
+  &.drop-shadow {
+    box-shadow: 0 0 74px rgba(black, 80%);
+  }
 }
 </style>
