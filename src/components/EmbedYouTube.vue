@@ -51,6 +51,10 @@ export default {
     this.observeRezise()
   },
 
+  beforeDestroy () {
+    this.$emit('input', 'paused')
+  },
+
   methods: {
     observeRezise () {
       const resizeObserver = new ResizeObserver(entries => {
