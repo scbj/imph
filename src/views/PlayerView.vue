@@ -77,11 +77,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/_vars.scss';
+
 .player-view {
   background: rgba(black, 80%);
   display: grid;
-  grid-template-columns: minmax(400px, 3fr) minmax(auto, 1060px) minmax(160px, 1fr);
-  grid-template-rows: 1fr auto auto 4fr;
+  grid-template-columns: minmax(2rem, 1fr) minmax(auto, 700px) minmax(2rem, 1fr);
+  grid-template-rows: 2rem auto auto 4fr;
   align-items: flex-start;
   position: fixed;
   top: 0;
@@ -90,6 +92,21 @@ export default {
   height: 100vh;
   overflow-y: auto;
   transform: translateY(calc(var(--overflow-offset) * -1));
+
+  @media screen and (min-width: $medium) {
+    grid-template-columns: minmax(200px, 3fr) minmax(auto, 1060px) minmax(80px, 1fr);
+    grid-template-rows: 1fr auto auto 4fr;
+  }
+
+  @media screen and (min-width: $large) {
+    grid-template-columns: minmax(300px, 3fr) minmax(auto, 1060px) minmax(100px, 1fr);
+    grid-template-rows: 1fr auto auto 4fr;
+  }
+
+  @media screen and (min-width: $extraLarge) {
+    grid-template-columns: minmax(400px, 3fr) minmax(auto, 1060px) minmax(160px, 1fr);
+    grid-template-rows: 1fr auto auto 4fr;
+  }
 }
 
 .video-player,
