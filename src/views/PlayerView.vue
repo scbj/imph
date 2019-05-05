@@ -80,7 +80,7 @@ export default {
 .player-view {
   background: rgba(black, 80%);
   display: grid;
-  grid-template-columns: minmax(200px, 3fr) minmax(auto, 1060px) minmax(100px, 1fr);
+  grid-template-columns: minmax(400px, 3fr) minmax(auto, 1060px) minmax(160px, 1fr);
   grid-template-rows: 1fr auto auto 4fr;
   align-items: flex-start;
   position: fixed;
