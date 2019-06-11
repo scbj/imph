@@ -1,8 +1,8 @@
 import { createClient } from 'contentful'
 
-const spaceId = '1y3017a9dcjq'
+const spaceId = process.env.CONTENTFUL_SPACE_ID
 const environment = process.env.CONTENTFUL_ENVIRONMENT || 'master'
-const accessToken = 'aaefe1c8eb11c85a905bada087ab417f4062f5a54c808142a811c83c74155d65'
+const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 
 const client = createClient({
   space: spaceId,
