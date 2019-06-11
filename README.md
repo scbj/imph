@@ -1,29 +1,18 @@
-# imph-vue
+# imph - Real work production for a clipmaker
 
-## Project setup
-```
-yarn install
-```
+This is the website that was asked by a client, to highlight his work as a digital director.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+[Live Website](https://imph.netlify.com).
 
-### Compiles and minifies for production
+## Project setup, compiles and hot-reloads for development
 ```
-yarn run build
+yarn && yarn serve
 ```
 
-### Run your tests
-```
-yarn run test
-```
+### Project setup, compiles and minifies for production
 
-### Lints and fixes files
-```
-yarn run lint
-```
+> Build directory: **/dist**
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+yarn && yarn build
+```
