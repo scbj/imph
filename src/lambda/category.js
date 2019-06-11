@@ -54,7 +54,6 @@ export async function handler (event, context, callback) {
   try {
     const categories = await fetchEntries('category')
     if (categories) {
-      simplifyContentfulRefs(categories)
       return callback(null, {
         statusCode: 200,
         headers: {
