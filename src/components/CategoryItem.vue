@@ -46,7 +46,7 @@ export default {
   background-color: #000000;
   background-repeat: no-repeat;
   background-position: 40% 40%;
-  background-size: 300%;
+  background-size: cover;
   // Aspect
   border-radius: 7px;
   $margin: 2rem;
@@ -108,7 +108,6 @@ export default {
     transform 0.3s $easing, box-shadow 0.3s $easing;
 
     &:hover {
-      background-size: 320%;
       background-position: 40% 45%;
       opacity: 1;
       transform: translateY(-18px) scale(1.05);
