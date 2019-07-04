@@ -1,7 +1,7 @@
 <template>
   <StaggeredList :opacity="() => lte('small') ? 1 : 0.7" class="category-list">
     <CategoryItem
-      v-for="(category, index) in categories"
+      v-for="(category, index) in visibleCategories"
       :key="index"
       :data-index="index"
       :category="category"
@@ -29,7 +29,11 @@ export default {
 
   computed: {
     categories: get('categories'),
-    activeCategory: sync('home/activeCategory')
+    activeCategory: sync('home/activeCategory'),
+
+    visibleCategories () {
+      return this.categories.filter(category => category.visible !== false)
+    }
   },
 
   methods: {

@@ -59,7 +59,7 @@ export default {
     activeCategory: get('home/activeCategory'),
 
     backgroundUrl () {
-      return this.activeCategory && this.activeCategory.backgroundVideoUrl
+      return this.activeCategory && this.activeCategory.backgroundVideo.url
     }
   },
 

@@ -118,7 +118,8 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
   border-radius: 7px;
   grid-area: 1 / 1 / 3 / 3;
-  width: 100%;
+  max-width: 100%;
+  max-height: 30rem;
   transition: all .3s $easing;
   z-index: 1;
 }
@@ -135,6 +136,10 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   margin-bottom: 0.5em;
   grid-area: 2 / 2 / 3 / -1;
   align-self: flex-end;
+
+  h2 {
+    font-size: 2.4rem;
+  }
 }
 
 .artist {
