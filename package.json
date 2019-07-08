@@ -11,7 +11,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "clean": "rm -rf ./node_modules"
+    "clean": "rm -rf node_modules dist lambda"
   },
   "dependencies": {
     "contentful": "^7.5.0",
