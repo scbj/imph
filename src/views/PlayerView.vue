@@ -49,22 +49,21 @@ export default {
     if (!this.video) {
       return this.$router.push({ name: '404' })
     }
-    this.hackWrongScrollBehavior(false)
+    this.hackWrongScrollBehavior()
   },
 
   beforeDestroy () {
     this.opened = false
-    this.hackWrongScrollBehavior(true)
+    this.hackWrongScrollBehavior({ active: false })
   },
 
   methods: {
-    hackWrongScrollBehavior (value) {
+    hackWrongScrollBehavior ({ active = true } = {}) {
       const root = document.documentElement
       const offset = root.scrollTop
 
-      document.body.style.paddingRight = value ? '' : '10px'
-      root.style.setProperty('--overflow-y', value ? '' : 'hidden')
-      root.style.setProperty('--overflow-offset', value ? '0px' : `-${offset}px`)
+      root.style.setProperty('--overflow-y', active ? 'hidden' : '')
+      root.style.setProperty('--overflow-offset', active ? `-${offset}px` : '0px')
     },
 
     stop (event) {
@@ -91,7 +90,6 @@ export default {
   right: 0;
   height: 100vh;
   overflow-y: auto;
-  transform: translateY(calc(var(--overflow-offset) * -1));
 
   @media screen and (min-width: $medium) {
     grid-template-columns: minmax(200px, 3fr) minmax(auto, 1060px) minmax(80px, 1fr);

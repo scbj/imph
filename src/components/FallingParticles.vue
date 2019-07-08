@@ -25,14 +25,13 @@ function Scene () {
   this.width = 0
   this.context = undefined
   this.paused = false
-  this.stats = undefined
   this.istats = undefined
 }
 
 Scene.prototype = {
   constructor: Scene,
 
-  setup (canvas, animation, width, height, stats) {
+  setup (canvas, animation, width, height) {
     this.canvas = canvas
     this.animation = animation
     this.height = this.canvas.height = height
@@ -60,10 +59,10 @@ Particle.prototype = {
   constructor: Particle,
 
   update (width, height) {
-    if (this.y > height) {
-      this.y = 1 - this.size
+    if (this.y < 0) {
+      this.y = height - this.size
     }
-    this.y += this.vy
+    this.y -= this.vy
   }
 }
 
@@ -71,7 +70,7 @@ export default {
   mounted () {
     const scene = new Scene()
     const particles = []
-    const len = 120
+    const len = 62
     let height = window.innerHeight
     let width = window.innerWidth
 
@@ -100,8 +99,8 @@ export default {
       particle.x = Math.random() * width
       particle.y = Math.random() * height
       particle.depth = (Math.random() * 10) | 0
-      particle.size = (particle.depth + 1) / 8
-      particle.vy = particle.depth * 0.10 + 0.4 / Math.random()
+      particle.size = (particle.depth + 1) / 7
+      particle.vy = particle.depth * 0.4 + 1 / Math.random() * 0.4
       particles.push(particle)
     }
 
@@ -109,8 +108,7 @@ export default {
       document.getElementById('particles-canvas'),
       fallingParticles,
       width,
-      height,
-      !0
+      height
     )
     scene.animate()
     window.onresize = () => {
@@ -129,6 +127,5 @@ export default {
 canvas {
   width: 100%;
   height: 100%;
-  // transform: rotateZ(180deg);
 }
 </style>
