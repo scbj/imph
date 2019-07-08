@@ -8,6 +8,7 @@
       >
         <BaseLogo size="small" />
       </router-link>
+      <FallingParticles class="particles" />
       <VideoList :class="playerReactive" :videos="category.videos" />
       <GlitchyText
         :class="playerReactive"
@@ -32,11 +33,13 @@ import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
 import TransitionFade from '@/components/TransitionFade'
 import VideoList from '@/components/VideoList.vue'
+import FallingParticles from '@/components/FallingParticles.vue'
 
 export default {
   name: 'VideosView',
 
   components: {
+    FallingParticles,
     GlitchyText,
     HomeFooter,
     TransitionFade,
@@ -106,6 +109,16 @@ export default {
       transform: translateX(-8rem);
     }
   }
+}
+
+.particles {
+  opacity: 0.6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
 }
 
 .logo,
