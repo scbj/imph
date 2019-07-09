@@ -1,6 +1,6 @@
 <template>
   <div class="glitchy-text">
-    <template v-if="animate">
+    <template v-if="supportMixBlendMode && animate">
       <div class="text r">
         <slot />
       </div>
@@ -22,6 +22,13 @@ export default {
       type: Boolean,
       default: true
     }
+  },
+
+  computed: {
+    supportMixBlendMode () {
+      // This effects use CSS mix-blend-mode wich it's not supported in all browsers.
+      return window.getComputedStyle(document.body).mixBlendMode !== undefined
+    }
   }
 }
 </script>
@@ -36,6 +43,9 @@ export default {
 .text {
   grid-area: 1 / 1 / 2 / 2;
   mix-blend-mode: difference;
+  @supports not (mix-blend-mode: difference) {
+    // Do somethind because IE & MS Edge doesn't supports mix-blend-mode
+  }
   animation: giggle 1s ease infinite;
 }
 

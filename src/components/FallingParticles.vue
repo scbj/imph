@@ -5,18 +5,7 @@
 </template>
 
 <script>
-const requestAnimFrame = (function () {
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 60)
-    }
-  )
-})()
+window.requestAnimationFrame = window.requestAnimationFrame.bind(window)
 
 function Scene () {
   this.animation = undefined
@@ -25,25 +14,46 @@ function Scene () {
   this.width = 0
   this.context = undefined
   this.paused = false
-  this.istats = undefined
 }
 
 Scene.prototype = {
   constructor: Scene,
 
-  setup (canvas, animation, width, height) {
+  setup (canvas, particles, width, height) {
     this.canvas = canvas
-    this.animation = animation
     this.height = this.canvas.height = height
     this.width = this.canvas.width = width
     this.context = this.canvas.getContext('2d')
+    this.particles = particles
+    this.animation = this.fallingParticles
   },
 
   animate () {
     if (!this.paused) {
-      requestAnimFrame(this.animate.bind(this))
+      requestAnimationFrame(this.animate.bind(this))
     }
-    this.animation(this)
+    this.fallingParticles()
+  },
+
+  fallingParticles () {
+    const idata = this.context.createImageData(this.width, this.height)
+    for (var i = 0, l = this.particles.length; i < l; i++) {
+      // thanks Loktar ;)
+      const particle = this.particles[i]
+      for (let w = 0; w < particle.size; w++) {
+        for (let h = 0; h < particle.size; h++) {
+          // ~~ do a better performance than Math.floor()
+          const pData =
+                (~~(particle.x + w) + ~~(particle.y + h) * this.width) * 4
+          idata.data[pData] = 255
+          idata.data[pData + 1] = 255
+          idata.data[pData + 2] = 255
+          idata.data[pData + 3] = 255
+        }
+      }
+      particle.update(this.width, this.height)
+    }
+    this.context.putImageData(idata, 0, 0)
   }
 }
 
@@ -67,32 +77,34 @@ Particle.prototype = {
 }
 
 export default {
+  props: {
+    paused: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  data () {
+    return {
+      scene: null
+    }
+  },
+
+  watch: {
+    paused: {
+      immediate: true,
+      handler (paused) {
+        this.changeAnimationState(paused)
+      }
+    }
+  },
+
   mounted () {
-    const scene = new Scene()
+    this.scene = new Scene()
     const particles = []
     const len = 62
     let height = window.innerHeight
     let width = window.innerWidth
-
-    function fallingParticles () {
-      const idata = this.context.createImageData(this.width, this.height)
-      for (var i = 0, l = particles.length; i < l; i++) {
-        // thanks Loktar ;)
-        const particle = particles[i]
-        for (let w = 0; w < particle.size; w++) {
-          for (let h = 0; h < particle.size; h++) {
-            const pData =
-              (~~(particle.x + w) + ~~(particle.y + h) * this.width) * 4
-            idata.data[pData] = 255
-            idata.data[pData + 1] = 255
-            idata.data[pData + 2] = 255
-            idata.data[pData + 3] = 255
-          }
-        }
-        particle.update(this.width, this.height)
-      }
-      this.context.putImageData(idata, 0, 0)
-    }
 
     for (let i = 0; i < len; i++) {
       const particle = new Particle()
@@ -104,16 +116,23 @@ export default {
       particles.push(particle)
     }
 
-    scene.setup(
+    this.scene.setup(
       document.getElementById('particles-canvas'),
-      fallingParticles,
+      particles,
       width,
       height
     )
-    scene.animate()
+    this.scene.animate()
     window.onresize = () => {
-      height = scene.height = scene.canvas.height = window.innerHeight
-      width = scene.width = scene.canvas.width = window.innerWidth
+      height = this.scene.height = this.scene.canvas.height = window.innerHeight
+      width = this.scene.width = this.scene.canvas.width = window.innerWidth
+    }
+  },
+
+  methods: {
+    changeAnimationState (paused) {
+      this.scene && Object.assign(this.scene, { paused })
+      this.scene && this.scene.paused === false && this.scene.animate()
     }
   }
 }

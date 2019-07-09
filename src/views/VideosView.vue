@@ -8,7 +8,7 @@
       >
         <BaseLogo size="small" />
       </router-link>
-      <FallingParticles class="particles" />
+      <FallingParticles class="particles" :paused="playerOpened" />
       <VideoList :class="playerReactive" :videos="category.videos" />
       <GlitchyText
         :class="playerReactive"
@@ -97,9 +97,9 @@ export default {
   grid-template-columns: 20% 1fr auto;
   grid-template-rows: auto auto;
   align-items: flex-start;
-  position: relative;
 
   > * {
+    position: relative;
     z-index: 10;
     transition: filter .3s ease-in-out;
   }
