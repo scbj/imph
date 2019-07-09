@@ -5,8 +5,7 @@
 </template>
 
 <script>
-window.requestAnimationFrame = window.requestAnimationFrame.bind(window)
-
+/** Set all default values. */
 function Scene () {
   this.animation = undefined
   this.canvas = undefined
@@ -36,6 +35,11 @@ Scene.prototype = {
   },
 
   fallingParticles () {
+    /**
+     * The CanvasRenderingContext2D.createImageData() method of the Canvas 2D API
+     * creates a new, blank ImageData object with the specified dimensions.
+     * All of the pixels in the new object are transparent black. (cf MDN)
+     */
     const idata = this.context.createImageData(this.width, this.height)
     for (var i = 0, l = this.particles.length; i < l; i++) {
       // thanks Loktar ;)
@@ -53,6 +57,13 @@ Scene.prototype = {
       }
       particle.update(this.width, this.height)
     }
+
+    /**
+     * The CanvasRenderingContext2D.putImageData() method of the Canvas 2D API
+     * paints data from the given ImageData object onto the canvas. If a dirty
+     * rectangle is provided, only the pixels from that rectangle are painted.
+     * This method is not affected by the canvas transformation matrix. (cf MDN)
+     */
     this.context.putImageData(idata, 0, 0)
   }
 }
@@ -69,6 +80,7 @@ Particle.prototype = {
   constructor: Particle,
 
   update (width, height) {
+    // Move to the top
     if (this.y < 0) {
       this.y = height - this.size
     }
@@ -102,17 +114,28 @@ export default {
   mounted () {
     this.scene = new Scene()
     const particles = []
-    const len = 62
+    const particleCount = 62
+
+    // Uses base viewport size for better performance and observe for viewport resize.
     let height = window.innerHeight
     let width = window.innerWidth
+    window.onresize = () => {
+      height = this.scene.height = this.scene.canvas.height = window.innerHeight
+      width = this.scene.width = this.scene.canvas.width = window.innerWidth
+    }
 
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < particleCount; i++) {
       const particle = new Particle()
+
+      // Randomly define position
       particle.x = Math.random() * width
       particle.y = Math.random() * height
+
+      // Properties to create parallax effect
       particle.depth = (Math.random() * 10) | 0
       particle.size = (particle.depth + 1) / 7
       particle.vy = particle.depth * 0.4 + 1 / Math.random() * 0.4
+
       particles.push(particle)
     }
 
@@ -122,14 +145,15 @@ export default {
       width,
       height
     )
+
     this.scene.animate()
-    window.onresize = () => {
-      height = this.scene.height = this.scene.canvas.height = window.innerHeight
-      width = this.scene.width = this.scene.canvas.width = window.innerWidth
-    }
   },
 
   methods: {
+    /**
+     * Define the paused state of the current scene.
+     * @param {Boolean} paused The animation playback state.
+     */
     changeAnimationState (paused) {
       this.scene && Object.assign(this.scene, { paused })
       this.scene && this.scene.paused === false && this.scene.animate()
