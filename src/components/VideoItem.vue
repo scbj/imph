@@ -75,6 +75,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 10fr auto 1fr;
   align-items: center;
+  perspective: 500px;
   cursor: pointer;
 
   .thumbnail { grid-area: 1 / 2 / -1 / -1; }
@@ -97,11 +98,12 @@ $easing: cubic-bezier(.165, .84, .44, 1);
       }
       .thumbnail {
         box-shadow: 10px 15px 70px -5px rgba(#08F4EF, 20%);
-        transform: translate3d(-0.5em, -0.5em, 0)
+
+        transform: translate3d(-.4em,-.4em,0) rotateY(-10deg);
       }
       .title,
       .artist {
-        transform: translate3d(.5em, .5em, 0)
+        transform: translate3d(.6em, .6em, 0);
       }
       .title {
         text-shadow: 0 0.1em 1em rgba(#000000, 0);
