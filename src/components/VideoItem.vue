@@ -6,6 +6,16 @@
     @mouseleave="mouseOver = false"
     @click="openPlayer"
   >
+    <img
+      v-if="gte('medium')"
+      :src="thumbnailUrl"
+      class="deep-thumbnail deep-2"
+    >
+    <img
+      v-if="gte('medium')"
+      :src="thumbnailUrl"
+      class="deep-thumbnail deep-1"
+    >
     <img :src="thumbnailUrl" class="thumbnail">
     <GlitchyText class="title" :animate="gte('medium') && mouseOver">
       <h2>
@@ -52,7 +62,7 @@ export default {
 
   computed: {
     thumbnailUrl () {
-      return `${this.video.thumbnail.url}?h=680`
+      return `${this.video.thumbnail.url}?h=420`
     }
   },
 
@@ -78,7 +88,8 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   perspective: 500px;
   cursor: pointer;
 
-  .thumbnail { grid-area: 1 / 2 / -1 / -1; }
+  .thumbnail,
+  .deep-thumbnail { grid-area: 1 / 2 / -1 / -1; }
   .title { grid-area: 1 / 1 / 2 / -1 }
   .artist { grid-area: 2 / 1 / 3 / -1 }
 
@@ -87,19 +98,27 @@ $easing: cubic-bezier(.165, .84, .44, 1);
     grid-template-columns: 19rem 5rem 1fr;
     grid-template-rows: 1fr repeat(2, auto);
 
-    .thumbnail { grid-area: 1 / 1 / 3 / 3; }
+    .thumbnail,
+    .deep-thumbnail { grid-area: 1 / 1 / 3 / 3; }
     .title { grid-area: 2 / 2 / 3 / -1 }
     .artist { grid-area: 3 / 2 / 4 / -1 }
 
     &:hover {
       > .tag {
         opacity: 1;
-        transform: none;
+        transform: translate3d(0,0,-2em) rotateY(-10deg);
       }
       .thumbnail {
         box-shadow: 10px 15px 70px -5px rgba(#08F4EF, 20%);
 
         transform: translate3d(-.4em,-.4em,0) rotateY(-10deg);
+      }
+      .deep-thumbnail {
+        transform: translate3d(-.4em,-.4em,-9em) rotateY(-10deg);
+
+        &.deep-2 {
+          transform: translate3d(-.4em,-.4em,-23em) rotateY(-10deg);
+        }
       }
       .title,
       .artist {
@@ -116,14 +135,32 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   }
 }
 
-.thumbnail {
-  box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
+.thumbnail,
+.deep-thumbnail {
   border-radius: 7px;
-  grid-area: 1 / 1 / 3 / 3;
   max-width: 100%;
   max-height: 30rem;
   transition: all .3s $easing;
+  grid-area: 1 / 1 / 3 / 3;
+}
+
+.thumbnail {
+  box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
+  z-index: 2;
+}
+
+.deep-thumbnail {
+  filter: brightness(50%);
+  // opacity: 0.5;
+  height: 100%;
   z-index: 1;
+  transform: translate3d(-0.1em,0,-2em);
+
+  &.deep-2 {
+    // opacity: 0.2;
+  filter: brightness(20%);
+  transform: translate3d(-0.1em,0,-2em);
+  }
 }
 
 .title,
@@ -159,7 +196,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   display: flex;
   flex-direction: row;
   align-items: center;
-  transform: translateX(-10px) scale(0.9);
+  transform: translateX(-10px);
   transform-origin: 0% 50%;
   transition: all .2s $easing;
 }
