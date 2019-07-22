@@ -8,7 +8,11 @@
       >
         <BaseLogo size="small" />
       </router-link>
-      <FallingParticles class="particles" :paused="playerOpened" />
+      <FallingParticles
+        class="particles"
+        :paused="playerOpened"
+        :color="category.color | hexToRGB({ hasObject: true })"
+      />
       <VideoList :class="playerReactive" :videos="category.videos" />
       <GlitchyText
         :class="playerReactive"
@@ -35,8 +39,12 @@ import TransitionFade from '@/components/TransitionFade'
 import VideoList from '@/components/VideoList.vue'
 import FallingParticles from '@/components/FallingParticles.vue'
 
+import { hexToRGB } from '@/filters/color'
+
 export default {
   name: 'VideosView',
+
+  filters: { hexToRGB },
 
   components: {
     FallingParticles,

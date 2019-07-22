@@ -18,13 +18,14 @@ function Scene () {
 Scene.prototype = {
   constructor: Scene,
 
-  setup (canvas, particles, width, height) {
+  setup (canvas, particles, width, height, color) {
     this.canvas = canvas
     this.height = this.canvas.height = height
     this.width = this.canvas.width = width
     this.context = this.canvas.getContext('2d')
     this.particles = particles
     this.animation = this.fallingParticles
+    this.color = color
   },
 
   animate () {
@@ -49,9 +50,9 @@ Scene.prototype = {
           // ~~ do a better performance than Math.floor()
           const pData =
                 (~~(particle.x + w) + ~~(particle.y + h) * this.width) * 4
-          idata.data[pData] = 255
-          idata.data[pData + 1] = 255
-          idata.data[pData + 2] = 255
+          idata.data[pData] = this.color.r
+          idata.data[pData + 1] = this.color.g
+          idata.data[pData + 2] = this.color.b
           idata.data[pData + 3] = 255
         }
       }
@@ -93,6 +94,10 @@ export default {
     paused: {
       type: Boolean,
       default: false
+    },
+    color: {
+      type: Object,
+      default: () => ({ r: 255, g: 255, b: 255 })
     }
   },
 
@@ -143,7 +148,8 @@ export default {
       document.getElementById('particles-canvas'),
       particles,
       width,
-      height
+      height,
+      this.color
     )
 
     this.scene.animate()
