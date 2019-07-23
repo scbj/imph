@@ -1,6 +1,6 @@
 <template>
   <TransitionFade>
-    <div :class="{ minimal: playerOpened }" class="videos-view">
+    <div :class="{ minimal: playerOpened }" class="videos-view" :style="colors">
       <router-link
         :to="{ name: 'home' }"
         class="logo"
@@ -72,6 +72,18 @@ export default {
       return {
         blurred: this.playerOpened,
         out: this.playerOpened
+      }
+    },
+
+    colors () {
+      console.log("TCL: colors -> this.category.color", this.category.color)
+      const color = this.category.color || '#08F4EF'
+      const rgb = hexToRGB(color, { hasObject: true })
+      console.log("TCL: colors -> rgb", rgb)
+      const { r, g, b } = rgb
+      return {
+        '--highlight-color': color,
+        '--highlight-color-rgb': `${r},${g},${b}`
       }
     }
   },

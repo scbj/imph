@@ -122,7 +122,7 @@ export default {
 }
 
 .artist {
-  color: #08F4EF;
+  color: var(--highlight-color);
   grid-row: 4 / 5;
 }
 </style>

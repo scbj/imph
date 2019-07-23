@@ -148,7 +148,7 @@ $content-padding: 2rem;
   cursor: pointer;
 
   &::after {
-    background: #08F4EF;
+    background: var(--highlight-color);
     border-radius: 1px;
     content: "";
     height: 3px;

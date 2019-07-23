@@ -109,7 +109,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
         transform: translate3d(0,0,-2em) rotateY(-10deg);
       }
       .thumbnail {
-        box-shadow: 10px 15px 70px -5px rgba(#08F4EF, 20%);
+        box-shadow: 10px 15px 70px -5px rgba(var(--highlight-color-rgb), 20%);
 
         transform: translate3d(-.4em,-.4em,0) rotateY(-10deg);
       }
@@ -145,7 +145,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 }
 
 .thumbnail {
-  box-shadow: 10px 15px 30px -4px rgba(#08F4EF, 10%);
+  box-shadow: 10px 15px 30px -4px rgba(var(--highlight-color-rgb), 10%);
   z-index: 2;
 }
 
@@ -182,13 +182,13 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 }
 
 .artist {
-  color: #08F4EF;
+  color: var(--highlight-color);
   margin-top: 0.5em;
   grid-area: 3 / 2 / 4 / -1;
 }
 
 .tag {
-  color: #08F4EF;
+  color: var(--highlight-color);
   grid-area: 1 / -2 / 2 / -1;
   align-self: flex-end;
   justify-self: flex-start;
@@ -202,11 +202,12 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 }
 
 .line {
-  background-color: rgba(#65EEEB, 89%);
+  background-color: rgba(var(--highlight-color-rgb), 89%);
   flex-grow: 1;
   margin: 1rem;
   width: 10rem;
   height: 2px;
-  box-shadow: 0 0 8px #61E5E2, 0 0 16px #61E5E2;
+  // box-shadow: 0 0 8px #61E5E2, 0 0 16px #61E5E2;
+  box-shadow: 0 0 8px var(--highlight-color), 0 0 16px var(--highlight-color);
 }
 </style>
