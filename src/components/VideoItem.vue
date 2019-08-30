@@ -19,7 +19,7 @@
     <img :src="thumbnailUrl" class="thumbnail">
     <GlitchyText class="title" :animate="gte('medium') && mouseOver">
       <h2>
-        {{ video.title }}
+        {{ video.title | lowerCase }}
       </h2>
     </GlitchyText>
     <h3 class="artist">
@@ -36,10 +36,14 @@
 import responsive from '@/mixins/responsive'
 import GlitchyText from '@/components/GlitchyText.vue'
 
+import { lowerCase } from '@/filters/string'
+
 export default {
   components: {
     GlitchyText
   },
+
+  filters: { lowerCase },
 
   mixins: [ responsive ],
 

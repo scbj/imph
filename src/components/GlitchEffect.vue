@@ -30,7 +30,7 @@ export default {
         images.push(<div class="image" />)
       }
       return images
-    };
+    }
     return (
       <div class="glitch-effect container" style={this.cssVariables}>
         <div class="images">{createImages()}</div>
@@ -79,6 +79,10 @@ export default {
       opacity: 1;
       animation: glitch-anim-text 0.5s linear;
     }
+
+    .images {
+      filter: blur(0) grayscale(0);
+    }
   }
 }
 
@@ -90,6 +94,10 @@ export default {
   max-height: calc(400px * 1.25);
   overflow: hidden;
   margin: 0 auto;
+
+  $easing: cubic-bezier(.165, .84, .44, 1);
+  filter: blur(3px) grayscale(100%);
+  transition: .3s $easing;
 }
 
 .images:hover .image {
@@ -150,6 +158,7 @@ export default {
   top: 0;
   pointer-events: none;
   line-height: 1;
+  text-shadow: 0 .1em .3em rgba(#000000, 20%);
 }
 
 .container:nth-child(odd) .title {

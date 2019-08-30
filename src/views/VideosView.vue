@@ -1,6 +1,10 @@
 <template>
   <TransitionFade>
-    <div :class="{ minimal: playerOpened }" class="videos-view" :style="colors">
+    <div
+      :class="{ minimal: playerOpened }"
+      class="videos-view"
+      :style="colors"
+    >
       <router-link
         :to="{ name: 'home' }"
         class="logo"
@@ -20,7 +24,7 @@
         :animate="lte('small')"
       >
         <h2>
-          {{ category.label }}
+          {{ category.label | lowerCase }}
         </h2>
       </GlitchyText>
       <HomeFooter :class="playerReactive" />
@@ -40,11 +44,12 @@ import VideoList from '@/components/VideoList.vue'
 import FallingParticles from '@/components/FallingParticles.vue'
 
 import { hexToRGB } from '@/filters/color'
+import { lowerCase } from '@/filters/string'
 
 export default {
   name: 'VideosView',
 
-  filters: { hexToRGB },
+  filters: { hexToRGB, lowerCase },
 
   components: {
     FallingParticles,
@@ -76,10 +81,10 @@ export default {
     },
 
     colors () {
-      console.log("TCL: colors -> this.category.color", this.category.color)
+      console.log('TCL: colors -> this.category.color', this.category.color)
       const color = this.category.color || '#08F4EF'
       const rgb = hexToRGB(color, { hasObject: true })
-      console.log("TCL: colors -> rgb", rgb)
+      console.log('TCL: colors -> rgb', rgb)
       const { r, g, b } = rgb
       return {
         '--highlight-color': color,
