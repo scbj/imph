@@ -158,6 +158,7 @@ $content-padding: 2rem;
 .site-name {
   grid-area: site-name;
   margin-top: 8rem;
+  margin-bottom: 2em;
 }
 
 .work-label {
@@ -166,39 +167,12 @@ $content-padding: 2rem;
   position: relative;
   user-select: none;
   cursor: pointer;
-
-  &::after {
-    background: var(--highlight-color);
-    border-radius: 1px;
-    content: "";
-    height: 3px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.3em;
-    transform-origin: 50% 50%;
-    transform: rotateZ(-2deg);
-    transition: transform .2s cubic-bezier(.215, .61, .355, 1);
-  }
-
-  @media screen and (min-width: $medium) {
-    transition: transform .26s cubic-bezier(.215, .61, .355, 1);
-
-    &:hover {
-      transform: scale(1.05);
-
-      &::after {
-        transform: rotateZ(0) scaleY(1.8) scaleX(0.4);
-      }
-    }
-  }
-
 }
 
 .category-list {
   grid-area: category-list;
   justify-self: stretch;
-  margin-top: 6rem;
+  margin-top: 3rem;
   margin-bottom: 6rem;
 
   @media screen and (min-width: $medium) {

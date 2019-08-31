@@ -53,6 +53,7 @@ export default {
     },
 
     navigateTo (category) {
+      this.activeCategory = null
       this.$router.push({
         name: 'videos',
         params: { category: category.name }
