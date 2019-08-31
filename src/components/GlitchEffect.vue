@@ -12,13 +12,18 @@ export default {
     description: {
       type: String,
       default: 'Description'
+    },
+    color: {
+      type: String,
+      default: 'white'
     }
   },
 
   computed: {
     cssVariables () {
       return {
-        '--image-url': `url(${this.imageUrl})`
+        '--image-url': `url(${this.imageUrl})`,
+        '--highlight-color': this.color
       }
     }
   },
@@ -45,16 +50,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/_vars.scss";
+
 .glitch-effect {
   --color-text: #454847;
   --color-bg: #1d2121;
   --color-link: #454847;
   --color-link-hover: #fff;
   --color-info: #454847;
-  --glitch-width: 40vmax;
-  --glitch-height: calc(40vmax * 1.25);
+  --glitch-width: 22rem;
+  --glitch-height: calc(var(--glitch-width) * 1.25);
   --color-title: #fff;
-  --color-subtitle: #30efbf;
+  --color-subtitle: var(--highlight-color);
 
   --gap-horizontal: 3px;
   --gap-vertical: 70px;
@@ -71,22 +78,27 @@ export default {
 
 .container {
   position: relative;
+  max-width: 600px;
 
   &:hover {
     cursor: pointer;
 
-    .description {
-      opacity: 1;
-      animation: glitch-anim-text 0.5s linear;
+    .images {
+      filter: blur(0);
+      transform: none;
     }
 
-    .images {
-      filter: blur(0) grayscale(0);
+    @media screen and (min-width: $medium) {
+      .description {
+        opacity: 1;
+        animation: glitch-anim-text 0.5s linear;
+      }
     }
   }
 }
 
 .images {
+  border-radius: 7px;
   position: relative;
   width: var(--glitch-width);
   max-width: 400px;
@@ -94,10 +106,16 @@ export default {
   max-height: calc(400px * 1.25);
   overflow: hidden;
   margin: 0 auto;
+  box-shadow: 0px 15px 45px -10px rgba(#000000, 60%);
 
   $easing: cubic-bezier(.165, .84, .44, 1);
-  filter: blur(3px) grayscale(100%);
-  transition: .3s $easing;
+  transition: all .3s $easing;
+
+  @media screen and (min-width: $medium) {
+    border-radius: 0;
+    transform: scale(0.98);
+    filter: brightness(65%) grayscale(20%) blur(1px);
+  }
 }
 
 .images:hover .image {
@@ -136,7 +154,7 @@ export default {
   left: calc(-1 * var(--gap-horizontal));
   width: calc(100% + var(--gap-horizontal) * 2);
   height: calc(100% + var(--gap-vertical) * 2);
-  background: var(--image-url) no-repeat 50% 0;
+  background: var(--image-url) no-repeat 40% 40%;
   background-size: cover;
   transform: translate3d(0, 0, 0);
 
@@ -170,13 +188,16 @@ export default {
 .description {
   display: block;
   position: relative;
-  font-size: 50%;
-  opacity: 0;
   color: var(--color-subtitle);
+  text-shadow: 0 .1em .3em rgba(#000000, 20%);
+
+  @media screen and (min-width: $medium) {
+    opacity: 0;
+  }
 }
 
 @media screen and (max-width: 55em) {
-  .container {
+  /* .container {
     margin: 0 0 3em;
   }
   .container:nth-child(odd) {
@@ -189,7 +210,7 @@ export default {
     width: 100%;
     padding: 0;
     top: 20%;
-  }
+  } */
 }
 
 /* Animations */
@@ -390,14 +411,18 @@ export default {
   50% {
     -webkit-clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%);
     clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%);
+    transform: translate3d(-10px, 0, 0) scale3d(-1, -1, 1);
   }
   60% {
+
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     -webkit-clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%);
     clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%);
   }
   70% {
     -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%);
     clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%);
+
   }
   80% {
     -webkit-clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%);

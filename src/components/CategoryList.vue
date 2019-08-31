@@ -1,12 +1,11 @@
 <template>
-  <StaggeredList :opacity="() => lte('small') ? 1 : 0.7" class="category-list">
+  <StaggeredList class="category-list" @mouseleave.native="onMouseLeave">
     <CategoryItem
       v-for="(category, index) in visibleCategories"
       :key="index"
       :data-index="index"
       :category="category"
       @mouseover.native="mouseoverItem($event, category)"
-      @mouseleave.native="mouseLeaveItem"
       @click.native="navigateTo(category)"
     />
   </StaggeredList>
@@ -39,15 +38,12 @@ export default {
   methods: {
     mouseoverItem (event, category) {
       if (this.gte('medium')) {
-        event.target.style.opacity = 1
         this.changeBackgroundVideo(category)
       }
     },
 
-    mouseLeaveItem (event) {
-      if (this.gte('medium')) {
-        event.target.style.opacity = 0.7
-      }
+    onMouseLeave () {
+      this.changeBackgroundVideo(null)
     },
 
     changeBackgroundVideo (category) {

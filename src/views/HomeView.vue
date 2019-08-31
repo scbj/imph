@@ -15,7 +15,11 @@
         </h2>
         <HomeFooter />
       </template>
-      <HomeBackground :video="backgroundUrl" :image="posterUrl" />
+      <HomeBackground :video="backgroundUrl" />
+      <FallingParticles
+        class="particles"
+        :color="{'r':255,'g':255,'b':255}"
+      />
       <BaseLogo size="small" />
       <CategoryList />
       <SocialLinks />
@@ -29,6 +33,7 @@ import scrollToElement from 'scroll-to-element'
 
 import responsive from '@/mixins/responsive'
 import CategoryList from '@/components/CategoryList.vue'
+import FallingParticles from '@/components/FallingParticles.vue'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeBackground from '@/components/HomeBackground.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
@@ -40,6 +45,7 @@ export default {
 
   components: {
     CategoryList,
+    FallingParticles,
     GlitchyText,
     HomeBackground,
     HomeFooter,
@@ -48,12 +54,6 @@ export default {
   },
 
   mixins: [ responsive ],
-
-  data () {
-    return {
-      posterUrl: 'https://images.ctfassets.net/1y3017a9dcjq/1gJUo39HxZx5sANKVMqnUJ/fbf85a503fee92ea59b9225b04300b13/audience.jpg?h=500'
-    }
-  },
 
   computed: {
     activeCategory: get('home/activeCategory'),
@@ -109,6 +109,15 @@ $content-padding: 2rem;
   & > * {
     z-index: 10;
   }
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
 }
 
 .home-background {

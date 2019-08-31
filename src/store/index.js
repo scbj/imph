@@ -14,10 +14,6 @@ const getters = {
   hasCategories (state) {
     // Returns true when the array 'categories' contain at least one element
     return state.categories && state.categories.length > 0
-  },
-
-  activeCategory (state) {
-    return index => state.categories.length > index && state.categories[index]
   }
 }
 

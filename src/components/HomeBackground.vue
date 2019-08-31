@@ -5,13 +5,8 @@
       appear
       mode="out-in"
     >
-      <div
-        v-if="mode === 'image'"
-        :style="backgroundImage"
-        class="image"
-      />
       <video
-        v-else
+        v-show="visible"
         :src="video"
         class="video"
         autoplay
@@ -32,24 +27,12 @@ export default {
     video: {
       type: String,
       default: ''
-    },
-    image: {
-      type: String,
-      default: ''
     }
   },
 
   computed: {
-    backgroundImage () {
-      return {
-        backgroundImage: `url(${this.image})`
-      }
-    },
-
-    mode () {
-      return this.lte('small') || !this.video
-        ? 'image'
-        : 'video'
+    visible () {
+      return !!this.video
     }
   }
 }
@@ -58,15 +41,6 @@ export default {
 <style lang="scss" scoped>
 .home-background {
   display: flex;
-}
-
-.image {
-  background-repeat: no-repeat;
-  background-position: 40% 40%;
-  background-size: cover;
-  flex-grow: 1;
-  margin: -4rem;
-  filter: blur(25px) brightness(25%);
 }
 
 .video {
@@ -84,7 +58,7 @@ export default {
 
 .fade-leave-active {
   transition-delay: 0;
-  transition-duration: .1s;
+  transition-duration: .3s;
 }
 
 .fade-enter,
