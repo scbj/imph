@@ -18,6 +18,8 @@
       <HomeBackground :video="backgroundUrl" />
       <FallingParticles
         class="particles"
+        :class="{ visible: isParticlesVisible }"
+        :paused="!isParticlesVisible"
         :color="{'r':255,'g':255,'b':255}"
       />
       <BaseLogo size="small" />
@@ -60,6 +62,10 @@ export default {
 
     backgroundUrl () {
       return this.activeCategory && this.activeCategory.backgroundVideo.url
+    },
+
+    isParticlesVisible () {
+      return !this.activeCategory
     }
   },
 
@@ -118,6 +124,11 @@ $content-padding: 2rem;
   width: 100vw;
   height: 100vh;
   z-index: 5;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
+  }
 }
 
 .home-background {
