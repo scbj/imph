@@ -12,11 +12,6 @@
       >
         <BaseLogo size="small" />
       </router-link>
-      <FallingParticles
-        class="particles"
-        :paused="playerOpened"
-        :color="category.color | hexToRGB({ hasObject: true })"
-      />
       <VideoList :class="playerReactive" :videos="category.videos" />
       <GlitchyText
         :class="playerReactive"
@@ -41,7 +36,6 @@ import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
 import TransitionFade from '@/components/TransitionFade'
 import VideoList from '@/components/VideoList.vue'
-import FallingParticles from '@/components/FallingParticles.vue'
 
 import { hexToRGB } from '@/filters/color'
 import { lowerCase } from '@/filters/string'
@@ -52,7 +46,6 @@ export default {
   filters: { hexToRGB, lowerCase },
 
   components: {
-    FallingParticles,
     GlitchyText,
     HomeFooter,
     TransitionFade,
@@ -81,10 +74,8 @@ export default {
     },
 
     colors () {
-      console.log('TCL: colors -> this.category.color', this.category.color)
       const color = this.category.color || '#08F4EF'
       const rgb = hexToRGB(color, { hasObject: true })
-      console.log('TCL: colors -> rgb', rgb)
       const { r, g, b } = rgb
       return {
         '--highlight-color': color,
@@ -97,6 +88,7 @@ export default {
     if (!this.category) {
       this.$router.push({ name: 'home' })
     }
+    this.$store.set('particlesColor', hexToRGB(this.category.color, { hasObject: true }))
   },
 
   methods: {

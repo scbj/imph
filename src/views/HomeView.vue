@@ -16,12 +16,6 @@
         <HomeFooter />
       </template>
       <HomeBackground :video="backgroundUrl" />
-      <FallingParticles
-        class="particles"
-        :class="{ visible: isParticlesVisible }"
-        :paused="!isParticlesVisible"
-        :color="{'r':255,'g':255,'b':255}"
-      />
       <BaseLogo size="small" />
       <CategoryList />
       <SocialLinks />
@@ -35,7 +29,6 @@ import scrollToElement from 'scroll-to-element'
 
 import responsive from '@/mixins/responsive'
 import CategoryList from '@/components/CategoryList.vue'
-import FallingParticles from '@/components/FallingParticles.vue'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeBackground from '@/components/HomeBackground.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
@@ -47,7 +40,6 @@ export default {
 
   components: {
     CategoryList,
-    FallingParticles,
     GlitchyText,
     HomeBackground,
     HomeFooter,
@@ -62,11 +54,11 @@ export default {
 
     backgroundUrl () {
       return this.activeCategory && this.activeCategory.backgroundVideo.url
-    },
-
-    isParticlesVisible () {
-      return !this.activeCategory
     }
+  },
+
+  mounted () {
+    this.$store.set('particlesColor', { r: 255, g: 255, b: 255 })
   },
 
   methods: {
@@ -114,20 +106,6 @@ $content-padding: 2rem;
 
   & > * {
     z-index: 10;
-  }
-}
-
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5;
-  opacity: 0;
-
-  &.visible {
-    opacity: 1;
   }
 }
 

@@ -1,10 +1,12 @@
 <template>
-  <div class="falling-particles">
+  <div class="falling-particles" :class="{ hidden: paused }">
     <canvas id="particles-canvas" />
   </div>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 /** Set all default values. */
 function Scene () {
   this.animation = undefined
@@ -90,21 +92,15 @@ Particle.prototype = {
 }
 
 export default {
-  props: {
-    paused: {
-      type: Boolean,
-      default: false
-    },
-    color: {
-      type: Object,
-      default: () => ({ r: 255, g: 255, b: 255 })
-    }
-  },
-
   data () {
     return {
       scene: null
     }
+  },
+
+  computed: {
+    color: get('particlesColor'),
+    paused: get('particlesPaused')
   },
 
   watch: {
@@ -112,6 +108,11 @@ export default {
       immediate: true,
       handler (paused) {
         this.changeAnimationState(paused)
+      }
+    },
+    color: {
+      handler (color) {
+        this.scene.color = color
       }
     }
   },
@@ -171,6 +172,10 @@ export default {
 <style lang="scss" scoped>
 .falling-particles {
   pointer-events: none;
+
+  &.hidden {
+    opacity: 0;
+  }
 }
 
 canvas {

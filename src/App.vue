@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <FallingParticles class="particles" />
     <TransitionFade>
       <template v-if="ready">
         <router-view />
@@ -12,11 +13,13 @@
 <script>
 import { get } from 'vuex-pathify'
 
+import FallingParticles from '@/components/FallingParticles.vue'
 import StartupView from '@/views/StartupView'
 import TransitionFade from '@/components/TransitionFade'
 
 export default {
   components: {
+    FallingParticles,
     StartupView,
     TransitionFade
   },
@@ -66,6 +69,15 @@ $animation-duration: .6s;
 ::selection {
   background: rgba(white, 0.996);
   color: black;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
 }
 
 // Animations

@@ -7,13 +7,18 @@ import * as modules from '@/store/modules'
 Vue.use(Vuex)
 
 const state = {
-  categories: []
+  categories: [],
+  particlesColor: { r: 255, g: 255, b: 255 }
 }
 
 const getters = {
   hasCategories (state) {
     // Returns true when the array 'categories' contain at least one element
     return state.categories && state.categories.length > 0
+  },
+
+  particlesPaused (state, getters, rootState, rootGetters) {
+    return !!rootGetters['home/activeCategory']
   }
 }
 
