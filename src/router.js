@@ -36,13 +36,11 @@ const routes = [
 ]
 
 function scrollBehavior (to, from, savedPosition) {
-  if (savedPosition) {
-    return savedPosition
+  if (to.name === 'videos' && from.name !== 'player') {
+    return { x: 0, y: 0 }
   }
-  if (to.hash) {
-    return { selector: to.hash }
-  }
-  return { x: 0, y: 0 }
+
+  return null
 }
 
 export default new Router({

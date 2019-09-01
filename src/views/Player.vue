@@ -90,6 +90,7 @@ export default {
   right: 0;
   height: 100vh;
   overflow-y: auto;
+  z-index: 100;
 
   @media screen and (min-width: $medium) {
     grid-template-columns: minmax(200px, 3fr) minmax(auto, 1060px) minmax(80px, 1fr);
