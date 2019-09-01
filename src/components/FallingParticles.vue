@@ -120,7 +120,7 @@ export default {
   mounted () {
     this.scene = new Scene()
     const particles = []
-    const particleCount = 62
+    const particleCount = 28
 
     // Uses base viewport size for better performance and observe for viewport resize.
     let height = window.innerHeight
