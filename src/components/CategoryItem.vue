@@ -1,9 +1,27 @@
+<template>
+  <GlitchEffect
+    class="category-item"
+    :image-url="imageUrl"
+    :title="category.label | lowerCase"
+    :description="`${videoCount} vidéos`"
+    :color="category.color"
+    @mouseover.native="playVideo()"
+    @click.native="navigate()"
+  />
+</template>
+
 <script>
 import GlitchEffect from '@/components/GlitchEffect'
 
 import { lowerCase } from '@/filters/string'
 
 export default {
+  components: {
+    GlitchEffect
+  },
+
+  filters: { lowerCase },
+
   props: {
     category: {
       type: Object,
@@ -32,19 +50,6 @@ export default {
         params: { category: this.category.name }
       })
     }
-  },
-
-  render (h) {
-    return (
-      <GlitchEffect
-        class="category-item"
-        imageUrl={ this.imageUrl }
-        title={ lowerCase(this.category.label) }
-        description={ `${this.videoCount} vidéos` }
-        color={ this.category.color }
-        onMouseOver={ () => this.playVideo() }
-        onClick={() => this.navigate() } />
-    )
   }
 }
 </script>

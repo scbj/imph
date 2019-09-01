@@ -1,5 +1,5 @@
 <template>
-  <StaggeredList class="category-list" @mouseleave="onMouseLeave">
+  <StaggeredList class="category-list" @mouseleave.native="onMouseLeave">
     <CategoryItem
       v-for="(category, index) in visibleCategories"
       :key="index"

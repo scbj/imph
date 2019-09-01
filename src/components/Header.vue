@@ -20,7 +20,7 @@ header {
 }
 
 .home-button {
-  display: block;
+  display: inline-block;
   margin: 3rem;
 }
 </style>

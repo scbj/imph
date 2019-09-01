@@ -36,12 +36,8 @@ export default {
       }
       return images
     }
-    const listeners = {
-      listeners: this.$listeners
-    }
     return (
       <div
-        { ...listeners }
         class="glitch-effect container"
         style={this.cssVariables}>
         <div class="images">{createImages()}</div>
