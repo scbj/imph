@@ -14,6 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  padding: 2rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -21,6 +22,5 @@ header {
 
 .home-button {
   display: inline-block;
-  margin: 3rem;
 }
 </style>

@@ -1,14 +1,14 @@
 import { make } from 'vuex-pathify'
 
 export const state = {
-  activeCategory: null
+  particlesColor: { r: 255, g: 255, b: 255 }
 }
 
 export const getters = {
   ...make.getters(state),
 
-  activeBackgroundVideo (state) {
-    return state.activeCategory && state.activeCategory.backgroundVideo.url
+  particlesPaused (state, getters, rootState) {
+    return !!rootState.backgroundMedia.video
   }
 }
 

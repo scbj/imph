@@ -23,7 +23,6 @@ export default {
 
   computed: {
     categories: get('categories'),
-    activeCategory: sync('home/activeCategory'),
 
     visibleCategories () {
       return this.categories.filter(category => category.visible !== false)
