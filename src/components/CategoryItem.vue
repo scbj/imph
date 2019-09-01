@@ -35,22 +35,15 @@ export default {
   },
 
   render (h) {
-    const route = {
-      name: 'videos',
-      params: { category: this.category.name }
-    }
     return (
-      <RouterLink
-        to={ route }
+      <GlitchEffect
+        class="category-item"
+        imageUrl={ this.imageUrl }
+        title={ lowerCase(this.category.label) }
+        description={ `${this.videoCount} vidéos` }
+        color={ this.category.color }
         onMouseOver={ () => this.playVideo() }
-        onClick={() => this.navigate() }>
-        <GlitchEffect
-          class="category-item"
-          imageUrl={ this.imageUrl }
-          title={ lowerCase(this.category.label) }
-          description={ `${this.videoCount} vidéos` }
-          color={ this.category.color } />
-      </RouterLink>
+        onClick={() => this.navigate() } />
     )
   }
 }
