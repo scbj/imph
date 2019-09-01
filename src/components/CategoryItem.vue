@@ -20,14 +20,37 @@ export default {
     }
   },
 
+  methods: {
+    playVideo () {
+      const video = this.category.backgroundVideo.url
+      this.$store.set('backgroundMedia/video', video)
+    },
+    navigate () {
+      this.$store.set('backgroundMedia/video', null)
+      this.$router.push({
+        name: 'videos',
+        params: { category: this.category.name }
+      })
+    }
+  },
+
   render (h) {
+    const route = {
+      name: 'videos',
+      params: { category: this.category.name }
+    }
     return (
-      <GlitchEffect
-        class="category-item"
-        imageUrl={ this.imageUrl }
-        title={ lowerCase(this.category.label) }
-        description={ `${this.videoCount} vidéos` }
-        color={ this.category.color } />
+      <RouterLink
+        to={ route }
+        onMouseOver={ () => this.playVideo() }
+        onClick={() => this.navigate() }>
+        <GlitchEffect
+          class="category-item"
+          imageUrl={ this.imageUrl }
+          title={ lowerCase(this.category.label) }
+          description={ `${this.videoCount} vidéos` }
+          color={ this.category.color } />
+      </RouterLink>
     )
   }
 }
