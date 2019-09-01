@@ -3,9 +3,6 @@
     <div class="logo">
       <BaseLogo />
     </div>
-    <span class="text">
-      imphfilm
-    </span>
   </div>
 </template>
 
@@ -24,7 +21,7 @@ export default {
 }
 
 @mixin animate-blink {
-  animation: blink  1.7s ease-in-out 1s infinite;
+  animation: blink  1.5s ease-in-out .4s infinite;
 }
 
 @keyframes scale-and-fade {
@@ -52,6 +49,8 @@ export default {
   user-select: none;
 
   > .text {
+    font-weight: 500;
+    font-size: 2rem;
     position: fixed;
     bottom: 0;
     opacity: 0;

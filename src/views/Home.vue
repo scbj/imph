@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
 import scrollToElement from 'scroll-to-element'
 
 import responsive from '@/mixins/responsive'
