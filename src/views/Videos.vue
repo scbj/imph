@@ -5,13 +5,6 @@
       class="videos-view"
       :style="colors"
     >
-      <router-link
-        :to="{ name: 'home' }"
-        class="logo"
-        :class="playerReactive"
-      >
-        <BaseLogo size="small" />
-      </router-link>
       <VideoList :class="playerReactive" :videos="category.videos" />
       <GlitchyText
         :class="playerReactive"
@@ -56,15 +49,6 @@ export default {
 
   computed: {
     playerOpened: get('player/opened'),
-    videos () {
-      return this.category && this.category.videos
-    },
-    category () {
-      return this.findActiveCategory({
-        categories: this.$store.get('categories'),
-        categoryName: this.$route.params.category
-      })
-    },
 
     playerReactive () {
       return {
@@ -85,22 +69,22 @@ export default {
   },
 
   created () {
+    this.loadSpecifiedCategory()
     if (!this.category) {
       this.$router.push({ name: 'home' })
+    } else {
+      this.$store.set('particlesColor', hexToRGB(this.category.color, { hasObject: true }))
     }
-    this.$store.set('particlesColor', hexToRGB(this.category.color, { hasObject: true }))
   },
 
   methods: {
-    findActiveCategory ({ categories, categoryName }) {
-      if (!categories) {
-        return console.log("Category list isn't valid")
-      } else if (!categories.length) {
-        return console.log('Category list is empty')
-      }
+    loadSpecifiedCategory () {
+      const categories = this.$store.get('categories')
+      const categoryName = this.$route.params.category
 
-      return categories.find(c => c.name === categoryName) ||
-        console.log(`Category '${categoryName}' doesn't exist`, categories)
+      if (categories && categories.length) {
+        this.category = categories.find(c => c.name === categoryName)
+      }
     }
   }
 }
@@ -137,7 +121,6 @@ export default {
   z-index: 5;
 }
 
-.logo,
 .title {
   margin: 3rem;
 

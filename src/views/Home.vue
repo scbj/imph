@@ -15,8 +15,6 @@
         </h2>
         <HomeFooter />
       </template>
-      <HomeBackground :video="backgroundUrl" />
-      <BaseLogo size="small" />
       <CategoryList />
       <SocialLinks />
     </div>
@@ -30,7 +28,6 @@ import scrollToElement from 'scroll-to-element'
 import responsive from '@/mixins/responsive'
 import CategoryList from '@/components/CategoryList.vue'
 import GlitchyText from '@/components/GlitchyText.vue'
-import HomeBackground from '@/components/HomeBackground.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 import TransitionFade from '@/components/TransitionFade'
@@ -41,21 +38,12 @@ export default {
   components: {
     CategoryList,
     GlitchyText,
-    HomeBackground,
     HomeFooter,
     SocialLinks,
     TransitionFade
   },
 
   mixins: [ responsive ],
-
-  computed: {
-    activeCategory: get('home/activeCategory'),
-
-    backgroundUrl () {
-      return this.activeCategory && this.activeCategory.backgroundVideo.url
-    }
-  },
 
   mounted () {
     this.$store.set('particlesColor', { r: 255, g: 255, b: 255 })
@@ -85,7 +73,6 @@ $content-padding: 2rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    "logo"
     "site-name"
     "job"
     "social-links"
@@ -98,7 +85,6 @@ $content-padding: 2rem;
 
   @media screen and (min-width: $medium) {
     grid-template-areas:
-      "logo"
       "category-list"
       "social-links";
     min-height: 100vh;
@@ -107,19 +93,6 @@ $content-padding: 2rem;
   & > * {
     z-index: 10;
   }
-}
-
-.home-background {
-  grid-row: 1 / -1;
-  grid-column: 1 / 2;
-  justify-self: stretch;
-  z-index: 0;
-}
-
-.base-logo {
-  grid-area: logo;
-  align-self: flex-start;
-  justify-self: flex-start;
 }
 
 .site-name,
