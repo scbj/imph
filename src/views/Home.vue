@@ -69,6 +69,7 @@ $content-padding: 2rem;
 
 .home-view {
   padding: $content-padding;
+  padding-top: 8rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
