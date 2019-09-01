@@ -5,7 +5,7 @@
       <template v-if="ready">
         <router-view />
       </template>
-      <StartupView v-else />
+      <SplashScreen v-else />
     </TransitionFade>
   </div>
 </template>
@@ -14,13 +14,13 @@
 import { get } from 'vuex-pathify'
 
 import FallingParticles from '@/components/FallingParticles.vue'
-import StartupView from '@/views/StartupView'
+import SplashScreen from '@/components/SplashScreen'
 import TransitionFade from '@/components/TransitionFade'
 
 export default {
   components: {
     FallingParticles,
-    StartupView,
+    SplashScreen,
     TransitionFade
   },
 
