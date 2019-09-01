@@ -25,9 +25,14 @@ html {
 }
 
 body {
-  overflow-x: hidden;
-  overflow-y: var(--overflow-y);
   background: black;
+  overflow-x: hidden;
+  // Because modals are a nightmare with the scroll bar I simply decide to hide it all the time.
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 h1 {
