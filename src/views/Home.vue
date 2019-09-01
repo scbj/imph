@@ -45,7 +45,7 @@ export default {
   mixins: [ responsive ],
 
   mounted () {
-    this.$store.set('particlesColor', { r: 255, g: 255, b: 255 })
+    this.$store.set('effect/particlesColor', { r: 255, g: 255, b: 255 })
   },
 
   methods: {

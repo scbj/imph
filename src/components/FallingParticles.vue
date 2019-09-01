@@ -99,7 +99,7 @@ export default {
   },
 
   computed: {
-    color: get('particlesColor'),
+    color: get('effect/particlesColor'),
     paused: get('particlesPaused')
   },
 

@@ -7,8 +7,7 @@ import * as modules from '@/store/modules'
 Vue.use(Vuex)
 
 const state = {
-  categories: [],
-  particlesColor: { r: 255, g: 255, b: 255 }
+  categories: []
 }
 
 const getters = {

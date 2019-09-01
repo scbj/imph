@@ -73,7 +73,7 @@ export default {
     if (!this.category) {
       this.$router.push({ name: 'home' })
     } else {
-      this.$store.set('particlesColor', hexToRGB(this.category.color, { hasObject: true }))
+      this.$store.set('effect/particlesColor', hexToRGB(this.category.color, { hasObject: true }))
     }
   },
 
