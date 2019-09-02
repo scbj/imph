@@ -143,8 +143,10 @@ export default {
   transform: translateY(10px) translateX(-50%);
   user-select: all;
   transition: all .2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 8;
 
   &.active {
+    z-index: 10;
     opacity: 1;
     transition-duration: .3s;
     transform: translateY(0px) translateX(-50%);
