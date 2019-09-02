@@ -1,14 +1,31 @@
 <template>
-  <div class="social-links">
+  <div
+    class="social-links"
+    @mouseleave="mouseLeave()"
+  >
     <a
       v-for="(link, key) in links"
       :key="key"
       class="link"
       :href="link.url"
       :target="anchorTarget(link.newTab)"
+      @mouseover="mouseOver(link)"
     >
       <img :src="link.base64" class="icon">
     </a>
+    <template v-if="gte('medium')">
+      <span class="text">
+        where ?
+      </span>
+      <span
+        v-for="(link, key) in links"
+        :key="key + 100"
+        class="label"
+        :class="{ active: activeLink === link }"
+      >
+        {{ link.label }}
+      </span>
+    </template>
   </div>
 </template>
 
@@ -21,6 +38,7 @@ export default {
   data () {
     const mail = 'imphfilm@gmail.com'
     return {
+      activeLink: null,
       links: [
         {
           label: '/imphfilm',
@@ -45,33 +63,91 @@ export default {
   methods: {
     anchorTarget (newTab) {
       return newTab === false ? undefined : '_blank'
+    },
+
+    mouseOver (link) {
+      this.activeLink = link
+    },
+
+    mouseLeave (link) {
+      this.activeLink = null
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/_vars.scss';
+
 .social-links {
+  position: relative;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  /* grid-gap: 0.8em 1.2em; */
+  padding: 1.2em;
   user-select: none;
+  transform: translateX(-5px);
+
+  @media screen and (min-width: $medium) {
+    filter: brightness(35%);
+    transform: translateX(0);
+  }
+
+  &:hover {
+    filter: brightness(100%);
+
+    .link {
+      filter: brightness(75%);
+
+      &:hover {
+        filter: brightness(100%);
+      }
+    }
+
+    .text {
+      opacity: 0;
+    }
+
+  }
 }
 
 .link {
-  margin-left: 1em;
+  justify-self: center;
+  align-self: center;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 1em;
+}
 
-  &:first-of-type {
-    margin-left: 0;
-  }
+.icon {
+  $size: 19px;
+  width: $size;
+  height: $size;
+}
 
-  img {
-    $size: 19px;
-    margin-right: .5em;
-    width: $size;
-    height: $size;
+.text,
+.label {
+  position: absolute;
+  bottom: -0.3em;
+  left: 50%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.label {
+  opacity: 0;
+  transform: translateY(10px) translateX(-50%);
+  user-select: all;
+  transition: all .2s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &.active {
+    opacity: 1;
+    transition-duration: .3s;
+    transform: translateY(0px) translateX(-50%);
   }
 }
 </style>

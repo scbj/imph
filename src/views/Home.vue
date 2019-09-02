@@ -62,7 +62,7 @@ export default {
 
 $easing: cubic-bezier(.215, .61, .355, 1);
 
-$content-padding: 2rem;
+$content-padding: 1.5rem 1rem;
 
 .home-view {
   padding: $content-padding;
@@ -124,17 +124,9 @@ $content-padding: 2rem;
 .social-links {
   grid-area: social-links;
   align-self: center;
-  margin-top: 2em;
-  @media screen and (min-width: $medium) {
-    opacity: .3;
-    transform: translateY(.4em);
-    transition: all .2s $easing;
-  }
 
-  &:hover {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all .2s $easing;
+  @media screen and (min-width: $medium) {
+    justify-self: flex-end;
   }
 }
 
