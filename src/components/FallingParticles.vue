@@ -31,10 +31,10 @@ Scene.prototype = {
   },
 
   animate () {
+    requestAnimationFrame(this.animate.bind(this))
     if (!this.paused) {
-      requestAnimationFrame(this.animate.bind(this))
+      this.fallingParticles()
     }
-    this.fallingParticles()
   },
 
   fallingParticles () {
@@ -112,7 +112,7 @@ export default {
     },
     color: {
       handler (color) {
-        this.scene.color = color
+        this.scene && Object.assign(this.scene, { color })
       }
     }
   },
@@ -163,7 +163,6 @@ export default {
      */
     changeAnimationState (paused) {
       this.scene && Object.assign(this.scene, { paused })
-      this.scene && this.scene.paused === false && this.scene.animate()
     }
   }
 }
