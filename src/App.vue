@@ -39,6 +39,9 @@ export default {
   },
 
   async mounted () {
+    console.log(`%cDeveloped by Sacha B. for scbj.io. Enjoy! 🎈`, 'font-weight: bold;')
+    console.log('Open source project: https://github.com/scbj/imph')
+
     // Waiting at least 1 seconds before allow leaving StartupView
     setTimeout(() => {
       this.timeout = true
