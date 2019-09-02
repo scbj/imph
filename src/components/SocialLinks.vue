@@ -61,7 +61,7 @@ export default {
 }
 
 .link {
-  margin-left: 3.4em;
+  margin-left: 2.2em;
   display: flex;
   flex-direction: row;
   align-items: center;

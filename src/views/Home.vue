@@ -7,9 +7,6 @@
             imph
           </h1>
         </GlitchyText>
-        <h3 class="job">
-          Réalisateur numérique
-        </h3>
         <h2 class="work-label" @click="scroll">
           réalisations
         </h2>
@@ -74,7 +71,6 @@ $content-padding: 2rem;
   grid-template-columns: 1fr;
   grid-template-areas:
     "site-name"
-    "job"
     "social-links"
     "work-label"
     "category-list"
@@ -96,14 +92,8 @@ $content-padding: 2rem;
 }
 
 .site-name,
-.job,
 .work-label {
   align-self: center;
-}
-
-.job {
-  grid-area: job;
-  opacity: .87;
 }
 
 .site-name {
