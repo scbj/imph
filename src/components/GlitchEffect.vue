@@ -178,7 +178,7 @@ export default {
   top: 0;
   pointer-events: none;
   line-height: 1;
-  text-shadow: 0 .1em .3em rgba(#000000, 20%);
+  text-shadow: 0 0.3em 0.5em rgba(#000000, 50%);
 }
 
 .container:nth-child(odd) .title {

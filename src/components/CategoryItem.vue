@@ -3,7 +3,7 @@
     class="category-item"
     :image-url="imageUrl"
     :title="category.label | lowerCase"
-    :description="`${videoCount} vidéos`"
+    :description="category.description"
     :color="category.color"
     @mouseover.native="playVideo()"
     @click.native="navigate()"
