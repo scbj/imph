@@ -179,10 +179,6 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   margin-bottom: 0.5em;
   grid-area: 2 / 2 / 3 / -1;
   align-self: flex-end;
-
-  h2 {
-    font-size: 2.4rem;
-  }
 }
 
 .artist {
