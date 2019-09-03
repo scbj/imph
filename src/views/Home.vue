@@ -80,6 +80,7 @@ $content-padding: 1.5rem 1rem;
   overflow: hidden;
 
   @media screen and (min-width: $medium) {
+    padding: 2rem;
     grid-template-areas:
       "category-list"
       "social-links";
@@ -123,7 +124,7 @@ $content-padding: 1.5rem 1rem;
 
 .social-links {
   grid-area: social-links;
-  align-self: center;
+  align-self: flex-end;
 
   @media screen and (min-width: $medium) {
     justify-self: flex-end;

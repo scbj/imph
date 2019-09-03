@@ -84,7 +84,6 @@ export default {
   display: flex;
   flex-direction: row;
   /* grid-gap: 0.8em 1.2em; */
-  padding: 1.2em;
   user-select: none;
   transform: translateX(-5px);
 
@@ -117,7 +116,11 @@ export default {
   display: flex;
   align-content: center;
   justify-content: center;
-  padding: 1em;
+  margin-left: 1rem;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
 }
 
 .icon {
@@ -129,7 +132,7 @@ export default {
 .text,
 .label {
   position: absolute;
-  bottom: -0.3em;
+  top: -2.7em;
   left: 50%;
   font-size: 0.8rem;
   font-weight: 400;
