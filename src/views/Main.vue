@@ -27,20 +27,20 @@ main {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   position: relative;
-}
 
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 80;
-}
+  > header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 80;
+  }
 
-.social-links {
-  padding: 2rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 60;
+  > .social-links {
+    padding: 2rem;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 60;
+  }
 }
 </style>
