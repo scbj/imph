@@ -15,10 +15,6 @@ export default {
 <style lang="scss" scoped>
 header {
   padding: 2rem;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 80;
 }
 
 .home-button {

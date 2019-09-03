@@ -116,7 +116,13 @@ export default {
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-left: 1rem;
+  margin: 2rem;
+  margin-right: 0;
+
+  @media screen and (min-width: $medium) {
+    margin: 0;
+    margin-left: 1rem;
+  }
 
   &:first-of-type {
     margin-left: 0;
@@ -132,7 +138,7 @@ export default {
 .text,
 .label {
   position: absolute;
-  top: -2.7em;
+  top: -0.2em;
   left: 50%;
   font-size: 0.8rem;
   font-weight: 400;
