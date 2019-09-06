@@ -1,5 +1,5 @@
 <template>
-  <TransitionFade>
+  <FadeTransition>
     <div
       :class="{ minimal: playerOpened }"
       class="videos-view"
@@ -18,7 +18,7 @@
       <HomeFooter :class="playerReactive" />
       <router-view />
     </div>
-  </TransitionFade>
+  </FadeTransition>
 </template>
 
 <script>
@@ -27,7 +27,7 @@ import { get } from 'vuex-pathify'
 import responsive from '@/mixins/responsive'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
-import TransitionFade from '@/components/TransitionFade'
+import FadeTransition from '@/transitions/FadeTransition'
 import VideoList from '@/components/VideoList.vue'
 
 import { hexToRGB } from '@/filters/color'
@@ -41,7 +41,7 @@ export default {
   components: {
     GlitchyText,
     HomeFooter,
-    TransitionFade,
+    FadeTransition,
     VideoList
   },
 

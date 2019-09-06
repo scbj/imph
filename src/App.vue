@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <FallingParticles class="particles" />
-    <TransitionFade>
+    <FadeTransition>
       <template v-if="ready">
         <router-view />
       </template>
       <SplashScreen v-else />
-    </TransitionFade>
+    </FadeTransition>
   </div>
 </template>
 
@@ -15,13 +15,13 @@ import { get } from 'vuex-pathify'
 
 import FallingParticles from '@/components/FallingParticles.vue'
 import SplashScreen from '@/components/SplashScreen'
-import TransitionFade from '@/components/TransitionFade'
+import FadeTransition from '@/transitions/FadeTransition'
 
 export default {
   components: {
     FallingParticles,
     SplashScreen,
-    TransitionFade
+    FadeTransition
   },
 
   data () {

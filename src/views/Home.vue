@@ -1,5 +1,5 @@
 <template>
-  <TransitionFade>
+  <FadeTransition>
     <div class="home-view">
       <template v-if="lte('small')">
         <GlitchyText class="site-name">
@@ -15,7 +15,7 @@
       </template>
       <CategoryList />
     </div>
-  </TransitionFade>
+  </FadeTransition>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ import CategoryList from '@/components/CategoryList.vue'
 import GlitchyText from '@/components/GlitchyText.vue'
 import HomeFooter from '@/components/HomeFooter.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
-import TransitionFade from '@/components/TransitionFade'
+import FadeTransition from '@/transitions/FadeTransition'
 
 export default {
   name: 'HomeView',
@@ -36,7 +36,7 @@ export default {
     GlitchyText,
     HomeFooter,
     SocialLinks,
-    TransitionFade
+    FadeTransition
   },
 
   mixins: [ responsive ],
@@ -63,6 +63,7 @@ export default {
 $easing: cubic-bezier(.215, .61, .355, 1);
 
 .home-view {
+  padding-top: 6rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -76,6 +77,7 @@ $easing: cubic-bezier(.215, .61, .355, 1);
   overflow: hidden;
 
   @media screen and (min-width: $medium) {
+    padding-top: 0;
     grid-template-areas:
       "category-list";
     min-height: 100vh;
