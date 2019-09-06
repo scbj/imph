@@ -13,7 +13,7 @@ export default {
       <main>
         <BackgroundMedia />
         <RouterView class="content" />
-        { this.gte('medium') && <SocialLinks />}
+        { this.gte('medium') && <SocialLinks minimize={false} diminished={true} />}
         <Header />
       </main>
     )

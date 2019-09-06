@@ -1,6 +1,7 @@
 <template>
   <div
     class="social-links"
+    :class="{ diminished, minimize }"
     @mouseleave="mouseLeave()"
   >
     <a
@@ -13,7 +14,7 @@
     >
       <img :src="link.base64" class="icon">
     </a>
-    <template v-if="gte('medium')">
+    <template v-if="!minimize">
       <span class="text">
         where ?
       </span>
@@ -30,10 +31,18 @@
 </template>
 
 <script>
-import responsive from '@/mixins/responsive'
 
 export default {
-  mixins: [ responsive ],
+  props: {
+    minimize: {
+      type: Boolean,
+      default: true
+    },
+    diminished: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   data () {
     const mail = 'imphfilm@gmail.com'
@@ -85,11 +94,15 @@ export default {
   flex-direction: row;
   /* grid-gap: 0.8em 1.2em; */
   user-select: none;
-  transform: translateX(-5px);
+  transition: all .2s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  @media screen and (min-width: $medium) {
+  &.diminished {
     filter: brightness(35%);
-    transform: translateX(0);
+  }
+
+  &.minimize .link {
+    margin: 2rem;
+    margin-right: 0;
   }
 
   &:hover {
@@ -110,19 +123,14 @@ export default {
   }
 }
 
-.link {
+.social-links .link {
   justify-self: center;
   align-self: center;
   display: flex;
   align-content: center;
   justify-content: center;
-  margin: 2rem;
-  margin-right: 0;
-
-  @media screen and (min-width: $medium) {
-    margin: 0;
-    margin-left: 1rem;
-  }
+  margin: 0;
+  margin-left: 1rem;
 
   &:first-of-type {
     margin-left: 0;
@@ -145,6 +153,7 @@ export default {
   margin: 0;
   white-space: nowrap;
   transform: translateX(-50%);
+  transition: all .2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .label {

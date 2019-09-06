@@ -62,11 +62,7 @@ export default {
 
 $easing: cubic-bezier(.215, .61, .355, 1);
 
-$content-padding: 1.5rem 1rem;
-
 .home-view {
-  padding: $content-padding;
-  padding-top: 6rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -80,7 +76,6 @@ $content-padding: 1.5rem 1rem;
   overflow: hidden;
 
   @media screen and (min-width: $medium) {
-    padding: 2rem;
     grid-template-areas:
       "category-list";
     min-height: 100vh;
@@ -115,6 +110,7 @@ $content-padding: 1.5rem 1rem;
   justify-self: stretch;
   margin-top: 3rem;
   margin-bottom: 6rem;
+  margin: 3rem 2rem;
 
   @media screen and (min-width: $medium) {
     margin: 0;
@@ -124,11 +120,11 @@ $content-padding: 1.5rem 1rem;
 .social-links {
   grid-area: social-links;
   align-self: flex-end;
+  transform: translateX(-5px);
 }
 
 .home-footer {
   grid-area: footer;
-  margin: -$content-padding;
   justify-self: stretch;
 }
 </style>
