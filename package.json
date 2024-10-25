@@ -17,7 +17,7 @@
     "contentful": "^7.5.0",
     "scroll-to-element": "^2.0.3",
     "velocity-animate": "^1.5.2",
-    "vue": "^2.6.10",
+    "vue": "^3.0.0",
     "vue-mq": "^1.0.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
